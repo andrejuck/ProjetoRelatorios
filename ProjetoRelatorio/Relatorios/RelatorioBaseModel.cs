@@ -8,6 +8,7 @@ namespace Relatorios
 {
     public class RelatorioBaseModel
     {
-
+        public int numero_pedido { get; set; }
+        public int nota_fiscal { get; set; }
     }
 }

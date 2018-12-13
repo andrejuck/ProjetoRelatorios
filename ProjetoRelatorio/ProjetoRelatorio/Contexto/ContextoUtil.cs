@@ -10,10 +10,12 @@ namespace ProjetoRelatorio.Contexto
     public class ContextoUtil : DbContext
     {
 
-        public DbSet<Pedidos> Pedidos { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public ContextoUtil(DbContextOptions options) : base(options)
         {
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CNS_SPCaes_B2b;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
         }
+
+        public DbSet<Pedidos> Pedidos { get; set; }
+        
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjetoRelatorio.Contexto;
+using ProjetoRelatorio.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace ProjetoRelatorio.Models
 {
-    public class Pedidos
+    public class Pedidos : IPedidos
     {
+        protected readonly ContextoUtil _context;
+
+        public Pedidos(ContextoUtil contexto)
+        {
+            _context = contexto;
+        }
+
         [Key]
         public int id_pedido { get; set; }
         public int numero_pedido { get; set; }
