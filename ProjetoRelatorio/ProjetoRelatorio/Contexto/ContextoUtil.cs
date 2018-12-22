@@ -16,6 +16,7 @@ namespace ProjetoRelatorio.Contexto
         }
 
         public DbSet<Pedidos> Pedidos { get; set; }
-        
+        public DbSet<ContasPagarReceber> ContasPagarReceber { get; set; }
+
     }
 }
