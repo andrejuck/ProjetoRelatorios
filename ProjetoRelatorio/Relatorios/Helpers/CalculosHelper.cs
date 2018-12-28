@@ -4,15 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Relatorios
+namespace Relatorios.Helpers
 {
-    public class RelatorioVendasBaseModel
+    public class CalculosHelper
     {
-        public int? IdPedido { get; set; }
-        public int? NumeroPedido { get; set; }
-        public int? IdNotaFiscal { get; set; }
-        public int? NotaFiscal { get; set; }
-
         /// <summary>
         /// Método criado para padronizar o calculo de valor total do Pedido. Se for passado paramêtro nulo, será atribuído o valor 0(zero)
         /// para o mesmo.
@@ -28,6 +23,5 @@ namespace Relatorios
 
             return resultado;
         }
-
     }
 }

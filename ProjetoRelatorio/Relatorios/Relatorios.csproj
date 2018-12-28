@@ -40,7 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RelatorioBaseModel.cs" />
+    <Compile Include="Helpers\CalculosHelper.cs" />
+    <Compile Include="RelatorioVendasBaseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelatorioVendedorTitulosAbertos.cs" />
   </ItemGroup>

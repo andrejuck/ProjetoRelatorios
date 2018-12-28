@@ -7,8 +7,9 @@
         dataType: 'json',
     },
     columns: [
-        {"data": "numero_pedido"},
-        {"data": "nota_fiscal"},
-    ]
+        { "data": "usuario" },
+        { "data": "idPedido" },
+        { "data": "idNotaFiscal" }
         
+    ]
 });

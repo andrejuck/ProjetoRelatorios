@@ -15,9 +15,7 @@ namespace ProjetoRelatorio.Models
         public Pedidos(ContextoUtil contexto)
         {
             _context = contexto;
-        }
-
-        [Key]
+        }        
         public int id_pedido { get; set; }
         public int numero_pedido { get; set; }
         public int id_empresa { get; set; }

@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using ProjetoRelatorio.Contexto;
+using ProjetoRelatorio.Interfaces;
 using ProjetoRelatorio.Models;
+using ProjetoRelatorio.Repositorios;
 using Relatorios;
 using System;
 using System.Collections.Generic;
@@ -12,11 +15,11 @@ namespace ProjetoRelatorio.Controllers
 {
     public class RelatorioController : Controller
     {
-        private readonly ContextoUtil _context;
+        private readonly IRelatorioRepository _relRepo;
 
-        public RelatorioController(ContextoUtil context)
+        public RelatorioController(IRelatorioRepository relRepo)
         {
-            _context = context;
+            _relRepo = relRepo;
         }
 
         public IActionResult Index ()
@@ -27,17 +30,9 @@ namespace ProjetoRelatorio.Controllers
         [HttpPost]
         public IActionResult GetData(DataTableParameters dtParams)
         {
-            try
-            {
-                var data = _context.Pedidos.Select(s => new RelatorioBaseModel { nota_fiscal = s.nota_fiscal, numero_pedido = s.numero_pedido } ).Take(1).ToList();
+            List<RelatorioVendedorTitulosAbertos> data = _relRepo.GetRelatorioVendedorTitulos();
 
-                return Json(new { data = data });
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
+            return Json(new { data });
+        }  
     }
 }

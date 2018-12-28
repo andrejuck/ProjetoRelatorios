@@ -8,6 +8,11 @@ namespace Relatorios
 {
     public class RelatorioVendedorTitulosAbertos : RelatorioVendasBaseModel
     {
+        public RelatorioVendedorTitulosAbertos()
+        {
+            
+        }
+
         #region Colunas
         public string Usuario { get; set; }
 
@@ -27,12 +32,6 @@ namespace Relatorios
         public decimal Desconto { get; set; }
 
         public decimal ValorPago { get; set; }
-
-
-        public RelatorioVendedorTitulosAbertos()
-        {
-
-        }
 
     }
 }

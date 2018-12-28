@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ProjetoRelatorio.Contexto;
 using ProjetoRelatorio.Interfaces;
 using ProjetoRelatorio.Models;
+using ProjetoRelatorio.Repositorios;
 
 namespace ProjetoRelatorio
 {
@@ -36,6 +37,7 @@ namespace ProjetoRelatorio
             );
 
             services.AddTransient<IPedidos, Pedidos>();
+            services.AddTransient<IRelatorioRepository, RelatorioRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
