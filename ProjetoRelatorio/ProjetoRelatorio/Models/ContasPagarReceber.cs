@@ -54,6 +54,12 @@ namespace ProjetoRelatorio.Models
         public int nota_fiscal_sat { get; set; }
         public int codigo_conta_pr_origem { get; set; }
         public int conta_pr_origem { get; set; }
+
+
+        public decimal CalculaTitulosTotais()
+        {
+            return 0;
+        }
     }
 
 

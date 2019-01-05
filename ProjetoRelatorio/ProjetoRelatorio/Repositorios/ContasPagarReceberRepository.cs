@@ -19,11 +19,11 @@ namespace ProjetoRelatorio.Repositorios
                 .Where(cpr => cpr.id_pedido != null)
                 .Select(s => new RelatorioVendedorTitulosAbertos()
                 {
-                   IdPedido = s.id_pedido ?? 0,
-                   Desconto = s.desconto,
-                   Juros = s.juros,
-                   Multa = s.multa,
-                   ValorConta = s.valor                  
+                   //IdPedido = s.id_pedido ?? 0,
+                   //Desconto = s.desconto,
+                   //Juros = s.juros,
+                   //Multa = s.multa,
+                   //ValorConta = s.valor                  
 
                 }).ToList();
 
