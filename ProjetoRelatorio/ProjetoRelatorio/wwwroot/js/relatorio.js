@@ -1,6 +1,10 @@
 ﻿const FormataDecimal = $.fn.dataTable.render.number('.', ',', 2);
 const FormataPorcentagem = $.fn.dataTable.render.number('.', ',', 2, '', '%');
 
+$('#btnTeste').on('click', function () {
+    $.notify("teste");
+});
+
 $('#example').DataTable({
     processing: true,
     serverSide: true,
