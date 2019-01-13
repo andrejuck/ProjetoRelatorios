@@ -7,9 +7,5 @@ namespace EmissorPedidos.Interfaces.Repositories
 {
     public interface ITelefoneRepository
     {
-        public int Id { get; set; }
-        public string Descricao { get; set; }
-
-        public List<Usuarios> Usuarios { get; set; }
     }
 }

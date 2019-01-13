@@ -10,16 +10,9 @@ namespace EmissorPedidos.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        private readonly ApplicationDbContext _context;
-
-        public UsuarioRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
         public bool SalvarUsuario(Usuarios user)
         {
-            return false;
+            throw new NotImplementedException();
         }
     }
 }
