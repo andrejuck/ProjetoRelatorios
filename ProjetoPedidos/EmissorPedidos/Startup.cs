@@ -43,6 +43,7 @@ namespace EmissorPedidos
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
             }
             else
             {
@@ -50,8 +51,7 @@ namespace EmissorPedidos
             }
 
             app.UseStaticFiles();
-            app.UseCookiePolicy();
-
+            app.UseCookiePolicy();            
             app.UseAuthentication();
             app.UseMvc(routes =>
             {

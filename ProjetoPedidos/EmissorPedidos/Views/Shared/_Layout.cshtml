@@ -15,37 +15,36 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EmissorPedidos</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+        <nav id="navbar">
+            <div class="ui fixed inverted menu">
+                <div class="ui container">
+                    <a class="header item" asp-area="" asp-controller="Home" asp-action="Index">EmissorPedidos</a>
+                    <div class="ui simple dropdown item">
+                        Dropdown
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a class="item" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="item" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </div>
+                    </div>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - EmissorPedidos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <partial name="_CookieConsentPartial" />
+    <main role="main">
+        <div class="ui main container">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="ui inverted vertical segment">
+            <div class="ui center aligned container">
+                &copy; 2019 - EmissorPedidos 
+            </div>
         </div>
     </footer>
 
