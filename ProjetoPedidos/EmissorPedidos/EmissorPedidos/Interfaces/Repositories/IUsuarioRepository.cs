@@ -8,6 +8,6 @@ namespace EmissorPedidos.Interfaces.Repositories
 {
     public interface IUsuarioRepository
     {
-        bool SalvarUsuario(Usuario user);
+        bool SalvarUsuario(Usuarios user);
     }
 }

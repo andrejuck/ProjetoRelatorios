@@ -19,7 +19,7 @@ namespace EmissorPedidos.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("EmissorPedidos.Areas.Identity.Data.Usuario", b =>
+            modelBuilder.Entity("EmissorPedidos.Areas.Identity.Data.UsuarioIdentity", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -70,6 +70,91 @@ namespace EmissorPedidos.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("EmissorPedidos.Models.EmpresaUsuario", b =>
+                {
+                    b.Property<int>("EmpresaId");
+
+                    b.Property<int>("UsuarioId");
+
+                    b.HasKey("EmpresaId", "UsuarioId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("EmpresaUsuario");
+                });
+
+            modelBuilder.Entity("EmissorPedidos.Models.Empresas", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Contato");
+
+                    b.Property<int>("Inscricao");
+
+                    b.Property<int>("InscricaoEstadual");
+
+                    b.Property<string>("NomeFantasia");
+
+                    b.Property<string>("RazaoSocial");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Empresas");
+                });
+
+            modelBuilder.Entity("EmissorPedidos.Models.NivelUsuario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Descricao");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("nivel_usuario");
+                });
+
+            modelBuilder.Entity("EmissorPedidos.Models.Telefones", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("NumeroTelefone");
+
+                    b.Property<int?>("UsuarioId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Telefones");
+                });
+
+            modelBuilder.Entity("EmissorPedidos.Models.Usuarios", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Apelido");
+
+                    b.Property<string>("Email");
+
+                    b.Property<int?>("NivelUsuarioId");
+
+                    b.Property<string>("Nome");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NivelUsuarioId");
+
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -186,6 +271,33 @@ namespace EmissorPedidos.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("EmissorPedidos.Models.EmpresaUsuario", b =>
+                {
+                    b.HasOne("EmissorPedidos.Models.Empresas", "Empresa")
+                        .WithMany("Usuarios")
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EmissorPedidos.Models.Usuarios", "Usuario")
+                        .WithMany("Empresas")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("EmissorPedidos.Models.Telefones", b =>
+                {
+                    b.HasOne("EmissorPedidos.Models.Usuarios", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId");
+                });
+
+            modelBuilder.Entity("EmissorPedidos.Models.Usuarios", b =>
+                {
+                    b.HasOne("EmissorPedidos.Models.NivelUsuario", "NivelUsuario")
+                        .WithMany("Usuarios")
+                        .HasForeignKey("NivelUsuarioId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -196,7 +308,7 @@ namespace EmissorPedidos.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("EmissorPedidos.Areas.Identity.Data.Usuario")
+                    b.HasOne("EmissorPedidos.Areas.Identity.Data.UsuarioIdentity")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -204,7 +316,7 @@ namespace EmissorPedidos.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("EmissorPedidos.Areas.Identity.Data.Usuario")
+                    b.HasOne("EmissorPedidos.Areas.Identity.Data.UsuarioIdentity")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -217,7 +329,7 @@ namespace EmissorPedidos.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("EmissorPedidos.Areas.Identity.Data.Usuario")
+                    b.HasOne("EmissorPedidos.Areas.Identity.Data.UsuarioIdentity")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -225,7 +337,7 @@ namespace EmissorPedidos.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("EmissorPedidos.Areas.Identity.Data.Usuario")
+                    b.HasOne("EmissorPedidos.Areas.Identity.Data.UsuarioIdentity")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
