@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 
 namespace EmissorPedidos.Models
 {
-    public class NivelUsuario
+    public class Telefones
     {
         public int Id { get; set; }
-        public string Descricao { get; set; }
-
-        public List<Usuarios> Usuarios { get; set; }
+        public Usuarios Usuario { get; set; }
+        public int NumeroTelefone { get; set; }
     }
 }

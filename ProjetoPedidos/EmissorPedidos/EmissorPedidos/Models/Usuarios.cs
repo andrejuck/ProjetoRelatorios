@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace EmissorPedidos.Models
 {
-    public class Usuario
+    public class Usuarios
     {
-        public int IdUsuario { get; set; }
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string Apelido { get; set; }
         public string Email { get; set; }
-        public int IdNivelUsuario { get; set; }
+        public NivelUsuario NivelUsuario { get; set; }
+        public IList<EmpresaUsuario> Empresas { get; set; }
     }
 }

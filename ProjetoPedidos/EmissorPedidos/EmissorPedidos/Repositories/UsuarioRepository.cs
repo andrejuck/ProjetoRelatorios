@@ -1,4 +1,5 @@
 ﻿using EmissorPedidos.Interfaces;
+using EmissorPedidos.Interfaces.Repositories;
 using EmissorPedidos.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace EmissorPedidos.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        public bool SalvarUsuario(Usuario user)
+        public bool SalvarUsuario(Usuarios user)
         {
             throw new NotImplementedException();
         }
