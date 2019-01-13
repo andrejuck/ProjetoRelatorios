@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmissorPedidos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190113020201_Reset")]
-    partial class Reset
+    [Migration("20190113132342_Tabela_NivelUsuario")]
+    partial class Tabela_NivelUsuario
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

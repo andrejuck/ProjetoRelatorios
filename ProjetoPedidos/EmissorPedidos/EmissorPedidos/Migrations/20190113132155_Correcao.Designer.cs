@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmissorPedidos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190113020201_Reset")]
-    partial class Reset
+    [Migration("20190113132155_Correcao")]
+    partial class Correcao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -118,7 +118,7 @@ namespace EmissorPedidos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("NivelUsuario");
+                    b.ToTable("nivel_usuario");
                 });
 
             modelBuilder.Entity("EmissorPedidos.Models.Telefones", b =>
