@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmissorPedidos.Repositories
 {
-    public class TelefoneRepository : ITelefoneRepository
+    public class EmpresaRepository : IEmpresaRepository
     {
     }
 }

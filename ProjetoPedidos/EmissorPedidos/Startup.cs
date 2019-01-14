@@ -35,6 +35,9 @@ namespace EmissorPedidos
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<ITelefoneRepository, TelefoneRepository>();
+            services.AddTransient<INivelUsuarioRepository, NivelUsuarioRepository>();
+            services.AddTransient<IEmpresaRepository, EmpresaRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

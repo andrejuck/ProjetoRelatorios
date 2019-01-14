@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using EmissorPedidos.Models;
+using EmissorPedidos.Interfaces.Repositories;
 
 namespace EmissorPedidos.Areas.Identity.Pages.Account
 {
@@ -20,17 +22,22 @@ namespace EmissorPedidos.Areas.Identity.Pages.Account
         private readonly UserManager<UsuarioIdentity> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IUsuarioRepository _userRepo;
+        private readonly INivelUsuarioRepository _nivelUserRepo;
 
         public RegisterModel(
             UserManager<UsuarioIdentity> userManager,
             SignInManager<UsuarioIdentity> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IUsuarioRepository userRepo, INivelUsuarioRepository nivelUserRepo)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _userRepo = userRepo;
+            _nivelUserRepo = nivelUserRepo;
         }
 
         [BindProperty]
@@ -77,6 +84,14 @@ namespace EmissorPedidos.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     Nome = Input.Nome
                 };
+
+                var usuario = new Usuarios
+                {
+                    Email = Input.Email,
+                    Nome = Input.Nome,
+                    NivelUsuario = _nivelUserRepo.CarregarNivelUsuario(1)
+                };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -93,6 +108,9 @@ namespace EmissorPedidos.Areas.Identity.Pages.Account
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    var resultado = await _userRepo.SalvarUsuarioAsync(usuario);
+
                     return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)

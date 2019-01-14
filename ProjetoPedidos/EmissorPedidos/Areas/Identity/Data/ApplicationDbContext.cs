@@ -43,6 +43,6 @@ namespace EmissorPedidos.Models
         public DbSet<Usuarios> Usuarios { get; set; }
         public DbSet<NivelUsuario> NivelUsuario { get; set; }
         public DbSet<Telefones> Telefones { get; set; }
-        //public DbSet<Empresas> Empresas { get; set; }
+        public DbSet<Empresas> Empresas { get; set; }
     }
 }

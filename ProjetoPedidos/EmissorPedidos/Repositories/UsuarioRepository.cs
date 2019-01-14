@@ -10,9 +10,31 @@ namespace EmissorPedidos.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        public bool SalvarUsuario(Usuarios user)
+        private readonly ApplicationDbContext _context;
+
+        public UsuarioRepository(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public async Task<bool> SalvarUsuarioAsync(Usuarios user)
+        {
+            bool retorno = false;
+            try
+            {
+                await _context.AddAsync(user);
+                var resultado = await _context.SaveChangesAsync();
+                if(resultado > 0)
+                {
+                   retorno = true;
+                }
+                return retorno;
+            }
+            catch (Exception ex)
+            {
+                return retorno;
+                throw ex;
+            }            
         }
     }
 }
