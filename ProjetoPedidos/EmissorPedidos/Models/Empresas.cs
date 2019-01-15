@@ -14,6 +14,8 @@ namespace EmissorPedidos.Models
         public int Inscricao { get; set; }
         public int InscricaoEstadual { get; set; }
         public string Contato { get; set; }
+        public IList<Enderecos> Endereco { get; set; }
+        public string Email { get; set; }
 
     }
 }

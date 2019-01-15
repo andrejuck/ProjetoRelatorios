@@ -9,8 +9,15 @@ a.navbar-brand {
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
+html, body {
   font-size: 14px;
+  
+}
+body {
+    background-color: #fdffdf
+}
+body.pushable > .pusher {
+    background-color: #fdffdf
 }
 @media (min-width: 768px) {
   html {
@@ -41,18 +48,13 @@ html {
   min-height: 100%;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px; /* Vertically center the text there */
+  height: 40px;
 }
 
 .main.container {
@@ -72,4 +74,10 @@ body {
 
 .ui.menu .ui.dropdown .menu > .item {
     color: #6435C9 !important;
+}
+.ui.header {
+    color: #6435C9;
+}
+.ui.form .field > label {
+    color: #6435C9;
 }

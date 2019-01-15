@@ -6,9 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EmissorPedidos.Controllers
 {
-    public class EmpresasController : Controller
+    public class EmpresaController : Controller
     {
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Cadastro()
         {
             return View();
         }

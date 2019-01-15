@@ -18,7 +18,12 @@
         <nav id="navbar">
             <div class="ui fixed inverted menu">
                 <div class="ui container">
-                    <a class="header item" asp-area="" asp-controller="Home" asp-action="Index">EmissorPedidos</a>
+                    <a id="toggleSideBar" class="header item">
+                        <i class="ellipsis vertical icon">
+
+                        </i>
+                    </a>
+                    <a class="item" asp-area="" asp-controller="Home" asp-action="Index">EmissorPedidos</a>
                     <div class="ui simple dropdown item">
                         Dropdown
                         <i class="dropdown icon"></i>
@@ -34,16 +39,34 @@
     </header>
 
     <partial name="_CookieConsentPartial" />
-    <main role="main">
+
+    <div class="ui sidebar inverted vertical menu">
+        <a class="active item">
+            Account
+        </a>
+        <a class="item">
+            Settings
+        </a>
+        <div class="ui dropdown item">
+            <i class="dropdown icon"></i>
+            Display Options
+            <div class="menu">
+                <a class="item">Small</a>
+                <a class="item">Medium</a>
+                <a class="item">Large</a>
+            </div>
+        </div>
+    </div>
+    <div class="pusher">
         <div class="ui main container">
             @RenderBody()
         </div>
-    </main>
+    </div>
 
     <footer class="footer">
         <div class="ui inverted vertical segment">
             <div class="ui center aligned container">
-                &copy; 2019 - EmissorPedidos 
+                &copy; 2019 - EmissorPedidos
             </div>
         </div>
     </footer>

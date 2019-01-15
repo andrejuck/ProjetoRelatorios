@@ -93,6 +93,8 @@ namespace EmissorPedidos.Migrations
 
                     b.Property<string>("Contato");
 
+                    b.Property<string>("Email");
+
                     b.Property<int>("Inscricao");
 
                     b.Property<int>("InscricaoEstadual");
@@ -106,6 +108,84 @@ namespace EmissorPedidos.Migrations
                     b.ToTable("Empresas");
                 });
 
+            modelBuilder.Entity("EmissorPedidos.Models.Enderecos", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Bairro");
+
+                    b.Property<int>("Cep");
+
+                    b.Property<string>("Complemento");
+
+                    b.Property<int?>("EmpresaId");
+
+                    b.Property<int?>("EstadoId");
+
+                    b.Property<string>("Logradouro");
+
+                    b.Property<int?>("MunicipioId");
+
+                    b.Property<int>("Numero");
+
+                    b.Property<int?>("PaisId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmpresaId");
+
+                    b.HasIndex("EstadoId");
+
+                    b.HasIndex("MunicipioId");
+
+                    b.HasIndex("PaisId");
+
+                    b.ToTable("Enderecos");
+                });
+
+            modelBuilder.Entity("EmissorPedidos.Models.Estados", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CodigoUf");
+
+                    b.Property<string>("Nome");
+
+                    b.Property<int?>("PaisId");
+
+                    b.Property<string>("Uf")
+                        .HasMaxLength(2);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PaisId");
+
+                    b.ToTable("Estados");
+                });
+
+            modelBuilder.Entity("EmissorPedidos.Models.Municipios", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Codigo");
+
+                    b.Property<int?>("EstadoId");
+
+                    b.Property<string>("Nome");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EstadoId");
+
+                    b.ToTable("Municipios");
+                });
+
             modelBuilder.Entity("EmissorPedidos.Models.NivelUsuario", b =>
                 {
                     b.Property<int>("Id")
@@ -116,7 +196,20 @@ namespace EmissorPedidos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("nivel_usuario");
+                    b.ToTable("NivelUsuario");
+                });
+
+            modelBuilder.Entity("EmissorPedidos.Models.Paises", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Nome");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Paises");
                 });
 
             modelBuilder.Entity("EmissorPedidos.Models.Telefones", b =>
@@ -282,6 +375,39 @@ namespace EmissorPedidos.Migrations
                         .WithMany("Empresas")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("EmissorPedidos.Models.Enderecos", b =>
+                {
+                    b.HasOne("EmissorPedidos.Models.Empresas", "Empresa")
+                        .WithMany("Endereco")
+                        .HasForeignKey("EmpresaId");
+
+                    b.HasOne("EmissorPedidos.Models.Estados", "Estado")
+                        .WithMany()
+                        .HasForeignKey("EstadoId");
+
+                    b.HasOne("EmissorPedidos.Models.Municipios", "Municipio")
+                        .WithMany()
+                        .HasForeignKey("MunicipioId");
+
+                    b.HasOne("EmissorPedidos.Models.Paises", "Pais")
+                        .WithMany()
+                        .HasForeignKey("PaisId");
+                });
+
+            modelBuilder.Entity("EmissorPedidos.Models.Estados", b =>
+                {
+                    b.HasOne("EmissorPedidos.Models.Paises", "Pais")
+                        .WithMany()
+                        .HasForeignKey("PaisId");
+                });
+
+            modelBuilder.Entity("EmissorPedidos.Models.Municipios", b =>
+                {
+                    b.HasOne("EmissorPedidos.Models.Estados", "Estado")
+                        .WithMany()
+                        .HasForeignKey("EstadoId");
                 });
 
             modelBuilder.Entity("EmissorPedidos.Models.Telefones", b =>

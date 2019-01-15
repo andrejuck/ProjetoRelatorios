@@ -5167,65 +5167,65 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .ui.container {
-    width: 723px;
+    width: 748px;
     margin-left: auto !important;
     margin-right: auto !important;
   }
 
-  .ui.grid.container {
-    width: calc( 723px  +  2rem ) !important;
-  }
+    .ui.grid.container {
+        width: calc( 748px + 2rem ) !important;
+    }
 
-  .ui.relaxed.grid.container {
-    width: calc( 723px  +  3rem ) !important;
-  }
+    .ui.relaxed.grid.container {
+        width: calc( 748px + 3rem ) !important;
+    }
 
-  .ui.very.relaxed.grid.container {
-    width: calc( 723px  +  5rem ) !important;
-  }
+    .ui.very.relaxed.grid.container {
+        width: calc( 748px + 5rem ) !important;
+    }
 }
 
 /* Small Monitor */
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .ui.container {
-    width: 933px;
+    width: 972px;
     margin-left: auto !important;
     margin-right: auto !important;
   }
 
-  .ui.grid.container {
-    width: calc( 933px  +  2rem ) !important;
-  }
+    .ui.grid.container {
+        width: calc( 972px + 2rem ) !important;
+    }
 
-  .ui.relaxed.grid.container {
-    width: calc( 933px  +  3rem ) !important;
-  }
+    .ui.relaxed.grid.container {
+        width: calc( 972px + 3rem ) !important;
+    }
 
-  .ui.very.relaxed.grid.container {
-    width: calc( 933px  +  5rem ) !important;
-  }
+    .ui.very.relaxed.grid.container {
+        width: calc( 972px + 5rem ) !important;
+    }
 }
 
 /* Large Monitor */
 
 @media only screen and (min-width: 1200px) {
   .ui.container {
-    width: 1127px;
+    width: 1180px;
     margin-left: auto !important;
     margin-right: auto !important;
   }
 
   .ui.grid.container {
-    width: calc( 1127px  +  2rem ) !important;
+    width: calc( 1180px  +  2rem ) !important;
   }
 
   .ui.relaxed.grid.container {
-    width: calc( 1127px  +  3rem ) !important;
+    width: calc( 1180px  +  3rem ) !important;
   }
 
   .ui.very.relaxed.grid.container {
-    width: calc( 1127px  +  5rem ) !important;
+    width: calc( 1180px  +  5rem ) !important;
   }
 }
 
