@@ -10,3 +10,22 @@ $(function () {
 function showHideSideBar () {
     $(".ui.sidebar").sidebar("toggle");
 }
+
+function CarregarEstados(NomeController, NomeMetodo) {  
+    var url = `/${NomeController}/${NomeMetodo}`;
+
+    $.get(url, function (data) {
+        $.each(data, function () {
+            $("#dropdownEstado").append($("<option>").val(this.id).text(this.uf));
+        });
+    });
+}
+
+function CarregarPaises(NomeController, NomeMetodo) {
+    var url = `/${NomeController}/${NomeMetodo}`;
+    $.get("/Empresa/GetPaises", function (data) {
+        $.each(data, function () {
+            $("#dropdownPais").append($("<option>").val(this.id).text(this.nome));
+        });
+    });
+}

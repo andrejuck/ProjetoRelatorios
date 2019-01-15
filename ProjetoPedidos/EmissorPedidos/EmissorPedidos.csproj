@@ -14,6 +14,7 @@
     <Compile Remove="Migrations\20190114225904_gerazlao.cs" />
     <Compile Remove="Migrations\20190114230111_geral.cs" />
     <Compile Remove="Migrations\20190114230230_geral.cs" />
+    <Compile Remove="Migrations\20190115014334_Epresa.cs" />
   </ItemGroup>
 
 

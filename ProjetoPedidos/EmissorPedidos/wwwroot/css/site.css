@@ -58,7 +58,7 @@ html {
 }
 
 .main.container {
-    margin-top: 7rem;
+    margin-top: 5rem;
 }
 .ui.inverted.menu, .ui.inverted.segment {
     background-color: #6435C9;
@@ -80,4 +80,12 @@ html {
 }
 .ui.form .field > label {
     color: #6435C9;
+}
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }

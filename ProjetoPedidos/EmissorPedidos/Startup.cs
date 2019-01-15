@@ -38,6 +38,9 @@ namespace EmissorPedidos
             services.AddTransient<ITelefoneRepository, TelefoneRepository>();
             services.AddTransient<INivelUsuarioRepository, NivelUsuarioRepository>();
             services.AddTransient<IEmpresaRepository, EmpresaRepository>();
+            services.AddTransient<IEnderecoRepository, EnderecoRepository>();
+            services.AddTransient<IEstadoRepository, EstadoRepository>();
+            services.AddTransient<IPaisRepository, PaisRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

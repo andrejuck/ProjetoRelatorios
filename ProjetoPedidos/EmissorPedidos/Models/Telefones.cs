@@ -9,6 +9,7 @@ namespace EmissorPedidos.Models
     {
         public int Id { get; set; }
         public Usuarios Usuario { get; set; }
+        public Empresas Empresa { get; set; }
         public int NumeroTelefone { get; set; }
     }
 }
