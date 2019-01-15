@@ -11,21 +11,27 @@ function showHideSideBar () {
     $(".ui.sidebar").sidebar("toggle");
 }
 
-function CarregarEstados(NomeController, NomeMetodo) {  
-    var url = `/${NomeController}/${NomeMetodo}`;
-
+function CarregarEstados(ddl) {  
+    var url = "/Util/GetEstados";
     $.get(url, function (data) {
         $.each(data, function () {
-            $("#dropdownEstado").append($("<option>").val(this.id).text(this.uf));
+            ddl.append($("<option>").val(this.id).text(this.uf));
         });
     });
 }
 
-function CarregarPaises(NomeController, NomeMetodo) {
-    var url = `/${NomeController}/${NomeMetodo}`;
-    $.get("/Empresa/GetPaises", function (data) {
+function CarregarPaises(ddl) {
+    var url = "/Util/GetPaises";
+    $.get(url, function (data) {
         $.each(data, function () {
-            $("#dropdownPais").append($("<option>").val(this.id).text(this.nome));
+            ddl.append($("<option>").val(this.id).text(this.nome));
         });
+    });
+}
+
+function CarregarUsuarios(ddl) {
+    $.get("/Util/GetUsuarioLogado", function (data) {
+        console.log(data);
+        ddl.val(data.apelido);
     });
 }

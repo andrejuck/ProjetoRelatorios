@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace EmissorPedidos.Repositories
 {
-    public class PaisRepository : IPaisRepository
+    public class PaisRepository : BaseRepository, IPaisRepository
     {
-        private readonly ApplicationDbContext _context;
-
-        public PaisRepository(ApplicationDbContext context)
+        public PaisRepository(ApplicationDbContext context) : base(context)
         {
-            _context = context;
         }
 
         public IList<Paises> CarregarTodosPaises()

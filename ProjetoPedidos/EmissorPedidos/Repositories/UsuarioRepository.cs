@@ -8,13 +8,27 @@ using System.Threading.Tasks;
 
 namespace EmissorPedidos.Repositories
 {
-    public class UsuarioRepository : IUsuarioRepository
+    public class UsuarioRepository : BaseRepository, IUsuarioRepository
     {
-        private readonly ApplicationDbContext _context;
-
-        public UsuarioRepository(ApplicationDbContext context)
+        public UsuarioRepository(ApplicationDbContext context) : base(context)
         {
-            _context = context;
+        }
+
+        public Usuarios CarregarUsuarioLogado(string identityId)
+        {
+            try
+            {
+                var usuario = _context.Usuarios.Where(w => w.IdentityId == identityId).SingleOrDefault();
+
+                if (usuario != null)
+                    return usuario;
+
+                throw new Exception("Não foi possivel encontrar o usuario logado");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<bool> SalvarUsuarioAsync(Usuarios user)

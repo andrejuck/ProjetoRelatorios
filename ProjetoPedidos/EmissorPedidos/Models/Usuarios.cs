@@ -13,5 +13,6 @@ namespace EmissorPedidos.Models
         public string Email { get; set; }
         public NivelUsuario NivelUsuario { get; set; }
         public IList<EmpresaUsuario> Empresas { get; set; }
+        public string IdentityId { get; set; }
     }
 }

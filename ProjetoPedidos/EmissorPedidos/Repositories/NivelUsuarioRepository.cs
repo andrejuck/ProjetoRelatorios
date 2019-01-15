@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace EmissorPedidos.Repositories
 {
-    public class NivelUsuarioRepository : INivelUsuarioRepository
+    public class NivelUsuarioRepository : BaseRepository, INivelUsuarioRepository
     {
-        private readonly ApplicationDbContext _context;
-
-        public NivelUsuarioRepository(ApplicationDbContext context)
+        public NivelUsuarioRepository(ApplicationDbContext context) : base(context)
         {
-            _context = context;
         }
 
         public NivelUsuario CarregarNivelUsuario(int id)
@@ -21,8 +18,10 @@ namespace EmissorPedidos.Repositories
             try
             {
                 var resultado = _context.NivelUsuario.Where(w => w.Id == id).SingleOrDefault();
+                if(resultado != null)
+                    return resultado;
 
-                return resultado;
+                throw new Exception($"Não foi possivel carregar o nivel de usuario {id}");
             }
             catch (Exception ex)
             {

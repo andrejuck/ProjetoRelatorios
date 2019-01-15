@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EmissorPedidos.Interfaces.Repositories;
+using EmissorPedidos.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmissorPedidos.Controllers
@@ -11,12 +12,15 @@ namespace EmissorPedidos.Controllers
     {
         private readonly IEstadoRepository _estadoRepository;
         private readonly IPaisRepository _paisRepository;
+        private readonly IEmpresaRepository _empresaRepository;
 
-        public EmpresaController(IEstadoRepository estadoRepository,
-            IPaisRepository paisRepository)
+        
+        public EmpresaController(IEstadoRepository estadoRepository, IPaisRepository paisRepository,
+            IEmpresaRepository empresaRepository)
         {
             _estadoRepository = estadoRepository;
             _paisRepository = paisRepository;
+            _empresaRepository = empresaRepository;
         }
 
         public IActionResult Index()
@@ -28,21 +32,19 @@ namespace EmissorPedidos.Controllers
         {
             return View();
         }
-
-        [HttpGet]
-        public JsonResult GetEstados()
+        
+        [HttpPost]
+        public IActionResult SalvarEmpresa(Empresas empresa)
         {
-            var retorno = _estadoRepository.CarregarTodosEstados();
+            var idEmpresa = _empresaRepository.SalvarCadastroEmpresa(empresa); 
 
-            return Json(retorno);
+            return Json(idEmpresa);
         }
 
-        [HttpGet]
-        public JsonResult GetPaises()
-        {
-            var retorno = _paisRepository.CarregarTodosPaises();
+        //[HttpPost]
+        //public IActionResult SalvarEnderecoEmpresa(Enderecos endereco)
+        //{
 
-            return Json(retorno);
-        }
+        //}
     }
 }

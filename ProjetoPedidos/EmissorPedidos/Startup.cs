@@ -39,6 +39,7 @@ namespace EmissorPedidos
             services.AddTransient<INivelUsuarioRepository, NivelUsuarioRepository>();
             services.AddTransient<IEmpresaRepository, EmpresaRepository>();
             services.AddTransient<IEnderecoRepository, EnderecoRepository>();
+            services.AddTransient<IMunicipioRepository, MunicipioRepository>();
             services.AddTransient<IEstadoRepository, EstadoRepository>();
             services.AddTransient<IPaisRepository, PaisRepository>();
         }

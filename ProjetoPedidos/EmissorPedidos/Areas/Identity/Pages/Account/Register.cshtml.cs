@@ -89,7 +89,8 @@ namespace EmissorPedidos.Areas.Identity.Pages.Account
                 {
                     Email = Input.Email,
                     Nome = Input.Nome,
-                    NivelUsuario = _nivelUserRepo.CarregarNivelUsuario(1)
+                    NivelUsuario = _nivelUserRepo.CarregarNivelUsuario(1),
+                    IdentityId = user.Id
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);

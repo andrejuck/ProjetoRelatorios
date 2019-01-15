@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace EmissorPedidos.Interfaces.Repositories
 {
-    public interface IEmpresaRepository
+    public interface IMunicipioRepository
     {
-        int SalvarCadastroEmpresa(Empresas empresa);
+        IList<Municipios> CarregarTodosMunicipios();
     }
 }

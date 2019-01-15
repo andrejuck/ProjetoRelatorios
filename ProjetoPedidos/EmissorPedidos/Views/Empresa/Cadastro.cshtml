@@ -7,7 +7,7 @@
     <div class="field">
         <div class="four wide field">
             <label>Usuário</label>
-            <select id="dropdownUsuario" name="Usuario" class="ui search dropdown"></select>
+            <input id="txtUsuario" class="disabled" name="Usuario" readonly/>
         </div>
     </div>
     <h4 class="ui dividing header">Cadastro de Empresa</h4>
@@ -37,23 +37,31 @@
             <label>CEP</label>
             <input type="text" name="Cep" placeholder="0000-000" />
         </div>
-        <div class="four wide field">
+        <div class="five wide field">
             <label>Endereço</label>
             <input type="text" name="Logradouro" placeholder="Endereço" />
         </div>
-        <div class="one wide field">
+        <div class="two wide field">
             <label>Número</label>
             <input type="number" name="Numero" />
         </div>
-        <div class="two wide field">
+        <div class="three wide field">
             <label>Complemento</label>
             <input type="text" name="Complemento" />
         </div>
         <div class="four wide field">
             <label>Bairro</label>
             <input type="text" name="Bairro" />
+        </div>        
+    </div>
+    <div class="fields">
+        <div class="four wide field">
+            <label>Municípios</label>
+            <select id="dropdownMunicipios" class="ui search dropdown" name="Municipios">
+                <option value="0">Municípios</option>
+            </select>
         </div>
-        <div class="one wide field">
+        <div class="two wide field">
             <label>UF</label>
             <select id="dropdownEstado" class="ui search dropdown" name="Estado">
                 <option value="0">UF</option>
@@ -72,16 +80,16 @@
     <div class="fields">
         <div class="four wide field">
             <label>Email</label>
-            <input type="text" name="Email" placeholder="Email" />
+            <input type="text" name="ContatoEmail" placeholder="Email" />
         </div>
         <div class="two wide field">
             <label>Telefone Fixo</label>
-            <input type="text" name="Telefone" />
+            <input type="text" name="ContatoTelefone" />
         </div>
-        <div class="two wide field">
+        @*<div class="two wide field">
             <label>Celular</label>
             <input type="text" name="Telefone" />
-        </div>
+        </div>*@
     </div>
 </form>
 <h4 class="ui dividing header"></h4>
@@ -90,18 +98,40 @@
 
 @section scripts {
     <script>
-        var ddlUsuario = $("#dropdownUsuario");
+        var ddlUsuario = $("#txtUsuario");
         var ddlPais = $("#dropdownPais");
+        var ddlEstado = $("#dropdownEstado");
+        var ddlMunicipio = $("#dropdownMunicipios");
+
         $(function () {
-            CarregarUsuarios();
-            CarregarEstados("Empresa", "GetEstados");
-            CarregarPaises("Empresa", "GetPaises");
-        })
+            CarregarUsuarios(ddlUsuario);
+            CarregarEstados(ddlEstado);
+            CarregarPaises(ddlPais);
+            CarregarMunicipios(ddlMunicipio);
 
-        function CarregarUsuarios() {
+            $("#submitEmpresa").on("click", function () {
+                var queryStringEmpresa = $("#formEmpresa").serializeArray();
+                var queryStringEndereco = $("#formEmpresaEndereco").serializeArray()
 
+                $.post("/Empresa/SalvarEmpresa", queryStringEmpresa, function (data) {
+                    return data;
+                }).then(function (idEmpresa) {
+                    $.post("/Empresa/SalvarEnderecoEmpresa", queryStringEndereco, function () {
+
+                    }).then(function () {
+
+                    });
+                });
+            });
+        });
+
+        function CarregarMunicipios(ddl) {
+            var url = "/Util/GetMunicipios";
+            $.get(url, function (data) {
+                $.each(data, function () {
+                    ddl.append($("<option>").val(this.id).text(this.nome));
+                });
+            });
         }
-        
-        
     </script>
 }

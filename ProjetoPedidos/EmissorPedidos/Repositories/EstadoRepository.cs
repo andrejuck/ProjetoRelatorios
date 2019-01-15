@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace EmissorPedidos.Repositories
 {
-    public class EstadoRepository : IEstadoRepository
+    public class EstadoRepository : BaseRepository, IEstadoRepository
     {
-        private readonly ApplicationDbContext _context;
-
-        public EstadoRepository(ApplicationDbContext context)
+        public EstadoRepository(ApplicationDbContext context) : base(context)
         {
-            _context = context;
         }
 
         public IList<Estados> CarregarTodosEstados()
