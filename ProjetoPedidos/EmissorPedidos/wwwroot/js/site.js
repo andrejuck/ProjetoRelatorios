@@ -11,6 +11,15 @@ function showHideSideBar () {
     $(".ui.sidebar").sidebar("toggle");
 }
 
+function CarregarMunicipios(ddl) {
+    var url = "/Util/GetMunicipios";
+    $.get(url, function (data) {
+        $.each(data, function () {
+            ddl.append($("<option>").val(this.id).text(this.nome));
+        });
+    });
+}
+
 function CarregarEstados(ddl) {  
     var url = "/Util/GetEstados";
     $.get(url, function (data) {
@@ -29,9 +38,11 @@ function CarregarPaises(ddl) {
     });
 }
 
-function CarregarUsuarios(ddl) {
+function CarregarUsuarios(ddl, id) {
     $.get("/Util/GetUsuarioLogado", function (data) {
-        console.log(data);
+        console.log(data);        
         ddl.val(data.apelido);
+        id.val(data.id);
     });
 }
+

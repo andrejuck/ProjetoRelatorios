@@ -3,11 +3,12 @@
     ViewData["Title"] = "Cadastro";
 }
 
-<form id="formEmpresa" class="ui form">
+<form id="formEmpresa" class="ui form" asp-controller="Empresa" asp-action="SalvarEmpresa">
     <div class="field">
         <div class="four wide field">
             <label>Usuário</label>
-            <input id="txtUsuario" class="disabled" name="Usuario" readonly/>
+            <input id="txtUsuario" class="disabled" asp-for="Usuario[0].Usuario.Apelido" readonly />
+            <input id="idUsuario" class="hidden" asp-for="Usuario[0].Usuario.Id" />
         </div>
     </div>
     <h4 class="ui dividing header">Cadastro de Empresa</h4>
@@ -29,109 +30,90 @@
             <input type="text" asp-for="InscricaoEstadual" placeholder="Inscrição Estadual da Empresa" />
         </div>
     </div>
-</form>
-<form id="formEmpresaEndereco" class="ui form">
-    <h4 class="ui dividing header">Endereço</h4>
+    @*</form>
+        <form id="formEmpresaEndereco" class="ui form">*@
+    <h4 class="ui dividing header">Endereço da Empresa</h4>
     <div class="fields">
         <div class="two wide field">
             <label>CEP</label>
-            <input type="text" name="Cep" placeholder="0000-000" />
+            <input type="text" asp-for="Endereco[0].Cep" placeholder="0000-000" />
         </div>
         <div class="five wide field">
             <label>Endereço</label>
-            <input type="text" name="Logradouro" placeholder="Endereço" />
+            <input type="text" asp-for="Endereco[0].Logradouro" placeholder="Endereço" />
         </div>
         <div class="two wide field">
             <label>Número</label>
-            <input type="number" name="Numero" />
+            <input type="number" asp-for="Endereco[0].Numero" />
         </div>
         <div class="three wide field">
             <label>Complemento</label>
-            <input type="text" name="Complemento" />
+            <input type="text" asp-for="Endereco[0].Complemento" />
         </div>
         <div class="four wide field">
             <label>Bairro</label>
-            <input type="text" name="Bairro" />
-        </div>        
+            <input type="text" asp-for="Endereco[0].Bairro" />
+        </div>
     </div>
     <div class="fields">
         <div class="four wide field">
             <label>Municípios</label>
-            <select id="dropdownMunicipios" class="ui search dropdown" name="Municipios">
+            <select id="dropdownMunicipios" class="ui search dropdown" asp-for="Endereco[0].Municipio.Id">
                 <option value="0">Municípios</option>
             </select>
         </div>
         <div class="two wide field">
             <label>UF</label>
-            <select id="dropdownEstado" class="ui search dropdown" name="Estado">
+            <select id="dropdownEstado" class="ui search dropdown" asp-for="Endereco[0].Estado.Id">
                 <option value="0">UF</option>
             </select>
         </div>
         <div class="two wide field">
             <label>País</label>
-            <select id="dropdownPais" class="ui search dropdown" name="Pais">
+            <select id="dropdownPais" class="ui search dropdown" asp-for="Endereco[0].Pais.Id">
                 <option value="0">Pais</option>
             </select>
         </div>
     </div>
-</form>
-<form id="formEmpresaContato" class="ui form">
+    @*</form>
+        <form id="formEmpresaContato" class="ui form">*@
     <h4 class="ui dividing header">Contatos</h4>
     <div class="fields">
         <div class="four wide field">
+            <label>Responsável</label>
+            <input type="text" asp-for="Contato" placeholder="Nome Contato" />
+        </div>
+        <div class="four wide field">
             <label>Email</label>
-            <input type="text" name="ContatoEmail" placeholder="Email" />
+            <input type="text" asp-for="Email" placeholder="Email" />
         </div>
         <div class="two wide field">
             <label>Telefone Fixo</label>
-            <input type="text" name="ContatoTelefone" />
+            <input type="text" asp-for="Telefone[0].NumeroTelefone" />
         </div>
-        @*<div class="two wide field">
+        <div class="two wide field">
             <label>Celular</label>
-            <input type="text" name="Telefone" />
-        </div>*@
+            <input type="text" asp-for="Telefone[1].NumeroTelefone" />
+        </div>
     </div>
+    <h4 class="ui dividing header"></h4>
+    <button class="ui right floated button positive" id="submitEmpresa">Salvar</button>
+    <button class="ui right floated button negative" id="cancelEmpresa">Cancelar</button>
 </form>
-<h4 class="ui dividing header"></h4>
-<button class="ui right floated button positive" id="submitEmpresa">Salvar</button>
-<button class="ui right floated button negative" id="cancelEmpresa">Cancelar</button>
 
 @section scripts {
     <script>
-        var ddlUsuario = $("#txtUsuario");
+        var txtUsuario = $("#txtUsuario");
+        var idUsuario = $("#idUsuario");
         var ddlPais = $("#dropdownPais");
         var ddlEstado = $("#dropdownEstado");
         var ddlMunicipio = $("#dropdownMunicipios");
 
         $(function () {
-            CarregarUsuarios(ddlUsuario);
+            CarregarUsuarios(txtUsuario, idUsuario);
             CarregarEstados(ddlEstado);
             CarregarPaises(ddlPais);
             CarregarMunicipios(ddlMunicipio);
-
-            $("#submitEmpresa").on("click", function () {
-                var queryStringEmpresa = $("#formEmpresa").serializeArray();
-                var queryStringEndereco = $("#formEmpresaEndereco").serializeArray()
-
-                $.post("/Empresa/SalvarEmpresa", queryStringEmpresa, function (data) {
-                    return data;
-                }).then(function (idEmpresa) {
-                    $.post("/Empresa/SalvarEnderecoEmpresa", queryStringEndereco, function () {
-
-                    }).then(function () {
-
-                    });
-                });
-            });
-        });
-
-        function CarregarMunicipios(ddl) {
-            var url = "/Util/GetMunicipios";
-            $.get(url, function (data) {
-                $.each(data, function () {
-                    ddl.append($("<option>").val(this.id).text(this.nome));
-                });
-            });
-        }
+        });        
     </script>
 }

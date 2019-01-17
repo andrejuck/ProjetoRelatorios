@@ -52,7 +52,7 @@ namespace EmissorPedidos.Controllers
         {
             var retorno = _municipioRepository.CarregarTodosMunicipios();
 
-            return Json(retorno);
+            return Json(retorno.OrderBy(o => o.Nome));
         }
 
         [HttpGet]

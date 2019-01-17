@@ -9,5 +9,6 @@ namespace EmissorPedidos.Interfaces.Repositories
     public interface IMunicipioRepository
     {
         IList<Municipios> CarregarTodosMunicipios();
+        Municipios CarregarMunicipioPorId(int id);
     }
 }

@@ -31,6 +31,19 @@ namespace EmissorPedidos.Repositories
             }
         }
 
+        public Usuarios CarregarUsuarioPorId(int id)
+        {
+            try
+            {
+                return _context.Usuarios.Where(w => w.Id == id).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public async Task<bool> SalvarUsuarioAsync(Usuarios user)
         {
             bool retorno = false;

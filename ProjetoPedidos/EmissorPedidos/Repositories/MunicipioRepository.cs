@@ -13,6 +13,19 @@ namespace EmissorPedidos.Repositories
         {
         }
 
+        public Municipios CarregarMunicipioPorId(int id)
+        {
+            try
+            {
+                return _context.Municipios.Where(w => w.Id == id).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public IList<Municipios> CarregarTodosMunicipios()
         {
             var listMunicipios = _context.Municipios.ToList();

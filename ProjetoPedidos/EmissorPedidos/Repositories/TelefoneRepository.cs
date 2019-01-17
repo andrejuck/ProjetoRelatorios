@@ -12,5 +12,34 @@ namespace EmissorPedidos.Repositories
         public TelefoneRepository(ApplicationDbContext context) : base(context)
         {
         }
+
+        public bool SalvarTelefone(IList<Telefones> listTelefones, int idEmpresa)
+        {
+            bool retorno = false;
+
+            if (idEmpresa <= 0)
+                retorno = false;
+            else
+            {
+                try
+                {
+                    foreach (var tel in listTelefones)
+                    {
+                        tel.Empresa.Id = idEmpresa;
+                        _context.Telefones.Add(tel);
+                    }
+
+                    _context.SaveChanges();
+                    retorno = true;
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }                
+            }
+
+            return retorno;
+        }
     }
 }

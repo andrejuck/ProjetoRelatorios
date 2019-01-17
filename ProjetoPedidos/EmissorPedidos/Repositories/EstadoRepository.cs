@@ -22,5 +22,18 @@ namespace EmissorPedidos.Repositories
 
             throw new Exception("Não foi possível carregar os estados");
         }
+
+        public Estados CarregarEstadoPorId(int id)
+        {
+            try
+            {
+                return _context.Estados.Where(w => w.Id == id).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

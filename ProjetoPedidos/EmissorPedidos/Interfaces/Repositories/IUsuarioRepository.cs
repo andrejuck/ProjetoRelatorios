@@ -10,5 +10,6 @@ namespace EmissorPedidos.Interfaces.Repositories
     {
         Task<bool> SalvarUsuarioAsync(Usuarios user);
         Usuarios CarregarUsuarioLogado(string identityId);
+        Usuarios CarregarUsuarioPorId(int id);
     }
 }

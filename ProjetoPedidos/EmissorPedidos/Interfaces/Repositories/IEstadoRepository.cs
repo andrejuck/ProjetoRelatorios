@@ -9,5 +9,6 @@ namespace EmissorPedidos.Interfaces.Repositories
     public interface IEstadoRepository
     {
         IList<Estados> CarregarTodosEstados();
+        Estados CarregarEstadoPorId(int id);
     }
 }
