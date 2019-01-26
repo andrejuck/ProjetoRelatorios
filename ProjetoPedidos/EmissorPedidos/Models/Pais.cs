@@ -1,10 +1,8 @@
 ﻿namespace EmissorPedidos.Models
 {
-    public class Municipios
+    public class Pais
     {
         public int Id { get; set; }
-        public int Codigo { get; set; }
         public string Nome { get; set; }
-        public Estados Estado { get; set; }
     }
 }

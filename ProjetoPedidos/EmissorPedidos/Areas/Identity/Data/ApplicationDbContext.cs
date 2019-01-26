@@ -24,7 +24,7 @@ namespace EmissorPedidos.Models
             // Add your customizations after calling base.OnModelCreating(builder);
 
             builder
-                .Entity<Usuarios>()
+                .Entity<Usuario>()
                 .HasKey(k => k.Id);
 
             builder
@@ -32,7 +32,7 @@ namespace EmissorPedidos.Models
                 .HasKey(k => k.Id);
 
             builder
-                .Entity<Telefones>()
+                .Entity<Telefone>()
                 .HasKey(k => k.Id);
 
             builder
@@ -40,13 +40,13 @@ namespace EmissorPedidos.Models
                 .HasKey(kk => new { kk.EmpresaId, kk.UsuarioId });
         }
 
-        public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<NivelUsuario> NivelUsuario { get; set; }
-        public DbSet<Telefones> Telefones { get; set; }
-        public DbSet<Empresas> Empresas { get; set; }
-        public DbSet<Municipios> Municipios { get; set; }
-        public DbSet<Estados> Estados { get; set; }
-        public DbSet<Paises> Paises { get; set; }
-        public DbSet<Enderecos> Enderecos { get; set; }
+        public DbSet<Telefone> Telefones { get; set; }
+        public DbSet<Empresa> Empresas { get; set; }
+        public DbSet<Municipio> Municipios { get; set; }
+        public DbSet<Estado> Estados { get; set; }
+        public DbSet<Pais> Paises { get; set; }
+        public DbSet<Endereco> Enderecos { get; set; }
     }
 }

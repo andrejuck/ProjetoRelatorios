@@ -8,6 +8,6 @@ namespace EmissorPedidos.Interfaces.Repositories
 {
     public interface ITelefoneRepository
     {
-        bool SalvarTelefone(IList<Telefones> listTelefones, int idEmpresa);
+        bool SalvarTelefone(IList<Telefone> listTelefones, int idEmpresa);
     }
 }

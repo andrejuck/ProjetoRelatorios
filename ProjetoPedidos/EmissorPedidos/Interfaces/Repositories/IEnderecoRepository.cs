@@ -8,7 +8,7 @@ namespace EmissorPedidos.Interfaces.Repositories
 {
     public interface IEnderecoRepository
     {
-        bool SalvarEndereco(IList<Enderecos> listEnderecos, int id);
-        IList<Enderecos> PopulaEndereco(IList<Enderecos> enderecos);
+        bool SalvarEndereco(IList<Endereco> listEnderecos, int id);
+        IList<Endereco> PopulaEndereco(IList<Endereco> enderecos);
     }
 }

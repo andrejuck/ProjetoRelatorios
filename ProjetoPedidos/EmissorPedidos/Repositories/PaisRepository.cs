@@ -13,7 +13,7 @@ namespace EmissorPedidos.Repositories
         {
         }
 
-        public IList<Paises> CarregarTodosPaises()
+        public IList<Pais> CarregarTodosPaises()
         {
             var listaPaises = _context.Paises.ToList();
 

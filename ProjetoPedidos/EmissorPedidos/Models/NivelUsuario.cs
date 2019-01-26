@@ -10,6 +10,6 @@ namespace EmissorPedidos.Models
         public int Id { get; set; }
         public string Descricao { get; set; }     
         
-        public List<Usuarios> Usuarios { get; set; }
+        public List<Usuario> Usuarios { get; set; }
     }
 }

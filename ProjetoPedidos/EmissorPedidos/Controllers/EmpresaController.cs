@@ -34,7 +34,7 @@ namespace EmissorPedidos.Controllers
         }
         
         [HttpPost]
-        public IActionResult SalvarEmpresa(Empresas empresa)
+        public IActionResult SalvarEmpresa(Empresa empresa)
         {
             var idEmpresa = _empresaRepository.SalvarCadastroEmpresa(empresa);
 

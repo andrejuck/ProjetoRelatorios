@@ -13,7 +13,7 @@ namespace EmissorPedidos.Repositories
         {
         }
 
-        public bool SalvarTelefone(IList<Telefones> listTelefones, int idEmpresa)
+        public bool SalvarTelefone(IList<Telefone> listTelefones, int idEmpresa)
         {
             bool retorno = false;
 

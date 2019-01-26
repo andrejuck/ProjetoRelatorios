@@ -85,7 +85,7 @@ namespace EmissorPedidos.Areas.Identity.Pages.Account
                     Nome = Input.Nome
                 };
 
-                var usuario = new Usuarios
+                var usuario = new Usuario
                 {
                     Email = Input.Email,
                     Nome = Input.Nome,

@@ -27,9 +27,9 @@ namespace EmissorPedidos.Repositories
             _usuarioRepository = usuarioRepository;
         }
 
-        public int SalvarCadastroEmpresa(Empresas empresa)
+        public int SalvarCadastroEmpresa(Empresa empresa)
         {
-            Empresas novaEmpresa = new Empresas
+            Empresa novaEmpresa = new Empresa
             {
                 Contato = empresa.Contato,
                 Email = empresa.Email,
@@ -39,7 +39,7 @@ namespace EmissorPedidos.Repositories
                 NomeFantasia = empresa.NomeFantasia,
                 RazaoSocial = empresa.RazaoSocial,
                 Telefone = empresa.Telefone,
-                Usuario = _usuarioRepository.CarregarUsuarioPorId(empresa.Usuario.Id)
+                //Usuario = _usuarioRepository.CarregarUsuarioPorId(empresa.Usuario.Id)
             };
 
             try

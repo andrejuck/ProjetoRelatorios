@@ -18,7 +18,7 @@ namespace EmissorPedidos.Repositories
             _municipioRepository = municipioRepository;
         }
 
-        public bool SalvarEndereco(IList<Enderecos> listEnderecos, int idEmpresa)
+        public bool SalvarEndereco(IList<Endereco> listEnderecos, int idEmpresa)
         {            
             bool retorno = false;
 
@@ -47,13 +47,13 @@ namespace EmissorPedidos.Repositories
             return retorno;
         }
 
-        public IList<Enderecos> PopulaEndereco(IList<Enderecos> enderecos)
+        public IList<Endereco> PopulaEndereco(IList<Endereco> enderecos)
         {
-            var listEnderecoPopulado = new List<Enderecos>();
+            var listEnderecoPopulado = new List<Endereco>();
 
             foreach (var endereco in enderecos)
             {
-                var enderecoPopulado = new Enderecos
+                var enderecoPopulado = new Endereco
                 {
                     Bairro = endereco.Bairro,
                     Cep = endereco.Cep,

@@ -13,7 +13,7 @@ namespace EmissorPedidos.Repositories
         {
         }
 
-        public IList<Estados> CarregarTodosEstados()
+        public IList<Estado> CarregarTodosEstados()
         {
             var listEstados = _context.Estados.ToList();
 
@@ -23,7 +23,7 @@ namespace EmissorPedidos.Repositories
             throw new Exception("Não foi possível carregar os estados");
         }
 
-        public Estados CarregarEstadoPorId(int id)
+        public Estado CarregarEstadoPorId(int id)
         {
             try
             {

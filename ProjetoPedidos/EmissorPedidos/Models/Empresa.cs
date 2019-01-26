@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EmissorPedidos.Models
 {
-    public class Empresas
+    public class Empresa
     {
         public int Id { get; set; }
         public IList<EmpresaUsuario> Usuario { get; set; }
@@ -14,8 +14,8 @@ namespace EmissorPedidos.Models
         public int Inscricao { get; set; }
         public int InscricaoEstadual { get; set; }
         public string Contato { get; set; }
-        public IList<Enderecos> Endereco { get; set; }
+        public IList<Endereco> Endereco { get; set; }
         public string Email { get; set; }
-        public IList<Telefones> Telefone { get; set; }
+        public IList<Telefone> Telefone { get; set; }
     }
 }

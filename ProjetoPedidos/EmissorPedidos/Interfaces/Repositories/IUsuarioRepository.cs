@@ -8,8 +8,8 @@ namespace EmissorPedidos.Interfaces.Repositories
 {
     public interface IUsuarioRepository
     {
-        Task<bool> SalvarUsuarioAsync(Usuarios user);
-        Usuarios CarregarUsuarioLogado(string identityId);
-        Usuarios CarregarUsuarioPorId(int id);
+        Task<bool> SalvarUsuarioAsync(Usuario user);
+        Usuario CarregarUsuarioLogado(string identityId);
+        Usuario CarregarUsuarioPorId(int id);
     }
 }

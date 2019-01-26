@@ -8,6 +8,6 @@ namespace EmissorPedidos.Interfaces.Repositories
 {
     public interface IPaisRepository
     {
-        IList<Paises> CarregarTodosPaises();
+        IList<Pais> CarregarTodosPaises();
     }
 }

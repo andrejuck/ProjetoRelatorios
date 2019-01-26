@@ -7,14 +7,6 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\LoginController.cs" />
-    <Compile Remove="Migrations\20190113131856_Correcao_posApagao.cs" />
-    <Compile Remove="Migrations\20190113131856_Correcao_posApagao.Designer.cs" />
-    <Compile Remove="Migrations\20190114225159_Pais_Estado_Municipio.cs" />
-    <Compile Remove="Migrations\20190114225529_Geral.cs" />
-    <Compile Remove="Migrations\20190114225904_gerazlao.cs" />
-    <Compile Remove="Migrations\20190114230111_geral.cs" />
-    <Compile Remove="Migrations\20190114230230_geral.cs" />
-    <Compile Remove="Migrations\20190115014334_Epresa.cs" />
   </ItemGroup>
 
 

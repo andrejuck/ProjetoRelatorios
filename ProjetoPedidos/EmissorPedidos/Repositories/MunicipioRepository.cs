@@ -13,7 +13,7 @@ namespace EmissorPedidos.Repositories
         {
         }
 
-        public Municipios CarregarMunicipioPorId(int id)
+        public Municipio CarregarMunicipioPorId(int id)
         {
             try
             {
@@ -26,7 +26,7 @@ namespace EmissorPedidos.Repositories
             }
         }
 
-        public IList<Municipios> CarregarTodosMunicipios()
+        public IList<Municipio> CarregarTodosMunicipios()
         {
             var listMunicipios = _context.Municipios.ToList();
 

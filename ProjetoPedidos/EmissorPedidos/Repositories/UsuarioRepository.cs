@@ -14,7 +14,7 @@ namespace EmissorPedidos.Repositories
         {
         }
 
-        public Usuarios CarregarUsuarioLogado(string identityId)
+        public Usuario CarregarUsuarioLogado(string identityId)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace EmissorPedidos.Repositories
             }
         }
 
-        public Usuarios CarregarUsuarioPorId(int id)
+        public Usuario CarregarUsuarioPorId(int id)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace EmissorPedidos.Repositories
             }
         }
 
-        public async Task<bool> SalvarUsuarioAsync(Usuarios user)
+        public async Task<bool> SalvarUsuarioAsync(Usuario user)
         {
             bool retorno = false;
             try

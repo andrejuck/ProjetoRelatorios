@@ -8,6 +8,6 @@ namespace EmissorPedidos.Interfaces.Repositories
 {
     public interface IEmpresaRepository
     {
-        int SalvarCadastroEmpresa(Empresas empresa);
+        int SalvarCadastroEmpresa(Empresa empresa);
     }
 }

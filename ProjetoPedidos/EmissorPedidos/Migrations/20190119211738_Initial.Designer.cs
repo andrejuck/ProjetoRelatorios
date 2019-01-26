@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmissorPedidos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190114230748_Geral")]
-    partial class Geral
+    [Migration("20190119211738_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,20 +74,7 @@ namespace EmissorPedidos.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("EmissorPedidos.Models.EmpresaUsuario", b =>
-                {
-                    b.Property<int>("EmpresaId");
-
-                    b.Property<int>("UsuarioId");
-
-                    b.HasKey("EmpresaId", "UsuarioId");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("EmpresaUsuario");
-                });
-
-            modelBuilder.Entity("EmissorPedidos.Models.Empresas", b =>
+            modelBuilder.Entity("EmissorPedidos.Models.Empresa", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -110,7 +97,20 @@ namespace EmissorPedidos.Migrations
                     b.ToTable("Empresas");
                 });
 
-            modelBuilder.Entity("EmissorPedidos.Models.Enderecos", b =>
+            modelBuilder.Entity("EmissorPedidos.Models.EmpresaUsuario", b =>
+                {
+                    b.Property<int>("EmpresaId");
+
+                    b.Property<int>("UsuarioId");
+
+                    b.HasKey("EmpresaId", "UsuarioId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("EmpresaUsuario");
+                });
+
+            modelBuilder.Entity("EmissorPedidos.Models.Endereco", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -147,7 +147,7 @@ namespace EmissorPedidos.Migrations
                     b.ToTable("Enderecos");
                 });
 
-            modelBuilder.Entity("EmissorPedidos.Models.Estados", b =>
+            modelBuilder.Entity("EmissorPedidos.Models.Estado", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -169,7 +169,7 @@ namespace EmissorPedidos.Migrations
                     b.ToTable("Estados");
                 });
 
-            modelBuilder.Entity("EmissorPedidos.Models.Municipios", b =>
+            modelBuilder.Entity("EmissorPedidos.Models.Municipio", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -201,7 +201,7 @@ namespace EmissorPedidos.Migrations
                     b.ToTable("NivelUsuario");
                 });
 
-            modelBuilder.Entity("EmissorPedidos.Models.Paises", b =>
+            modelBuilder.Entity("EmissorPedidos.Models.Pais", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -214,11 +214,13 @@ namespace EmissorPedidos.Migrations
                     b.ToTable("Paises");
                 });
 
-            modelBuilder.Entity("EmissorPedidos.Models.Telefones", b =>
+            modelBuilder.Entity("EmissorPedidos.Models.Telefone", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("EmpresaId");
 
                     b.Property<int>("NumeroTelefone");
 
@@ -226,12 +228,14 @@ namespace EmissorPedidos.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmpresaId");
+
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Telefones");
                 });
 
-            modelBuilder.Entity("EmissorPedidos.Models.Usuarios", b =>
+            modelBuilder.Entity("EmissorPedidos.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -240,6 +244,8 @@ namespace EmissorPedidos.Migrations
                     b.Property<string>("Apelido");
 
                     b.Property<string>("Email");
+
+                    b.Property<string>("IdentityId");
 
                     b.Property<int?>("NivelUsuarioId");
 
@@ -368,58 +374,62 @@ namespace EmissorPedidos.Migrations
 
             modelBuilder.Entity("EmissorPedidos.Models.EmpresaUsuario", b =>
                 {
-                    b.HasOne("EmissorPedidos.Models.Empresas", "Empresa")
-                        .WithMany("Usuarios")
+                    b.HasOne("EmissorPedidos.Models.Empresa", "Empresa")
+                        .WithMany("Usuario")
                         .HasForeignKey("EmpresaId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("EmissorPedidos.Models.Usuarios", "Usuario")
+                    b.HasOne("EmissorPedidos.Models.Usuario", "Usuario")
                         .WithMany("Empresas")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("EmissorPedidos.Models.Enderecos", b =>
+            modelBuilder.Entity("EmissorPedidos.Models.Endereco", b =>
                 {
-                    b.HasOne("EmissorPedidos.Models.Empresas", "Empresa")
+                    b.HasOne("EmissorPedidos.Models.Empresa", "Empresa")
                         .WithMany("Endereco")
                         .HasForeignKey("EmpresaId");
 
-                    b.HasOne("EmissorPedidos.Models.Estados", "Estado")
+                    b.HasOne("EmissorPedidos.Models.Estado", "Estado")
                         .WithMany()
                         .HasForeignKey("EstadoId");
 
-                    b.HasOne("EmissorPedidos.Models.Municipios", "Municipio")
+                    b.HasOne("EmissorPedidos.Models.Municipio", "Municipio")
                         .WithMany()
                         .HasForeignKey("MunicipioId");
 
-                    b.HasOne("EmissorPedidos.Models.Paises", "Pais")
+                    b.HasOne("EmissorPedidos.Models.Pais", "Pais")
                         .WithMany()
                         .HasForeignKey("PaisId");
                 });
 
-            modelBuilder.Entity("EmissorPedidos.Models.Estados", b =>
+            modelBuilder.Entity("EmissorPedidos.Models.Estado", b =>
                 {
-                    b.HasOne("EmissorPedidos.Models.Paises", "Pais")
+                    b.HasOne("EmissorPedidos.Models.Pais", "Pais")
                         .WithMany()
                         .HasForeignKey("PaisId");
                 });
 
-            modelBuilder.Entity("EmissorPedidos.Models.Municipios", b =>
+            modelBuilder.Entity("EmissorPedidos.Models.Municipio", b =>
                 {
-                    b.HasOne("EmissorPedidos.Models.Estados", "Estado")
+                    b.HasOne("EmissorPedidos.Models.Estado", "Estado")
                         .WithMany()
                         .HasForeignKey("EstadoId");
                 });
 
-            modelBuilder.Entity("EmissorPedidos.Models.Telefones", b =>
+            modelBuilder.Entity("EmissorPedidos.Models.Telefone", b =>
                 {
-                    b.HasOne("EmissorPedidos.Models.Usuarios", "Usuario")
+                    b.HasOne("EmissorPedidos.Models.Empresa", "Empresa")
+                        .WithMany("Telefone")
+                        .HasForeignKey("EmpresaId");
+
+                    b.HasOne("EmissorPedidos.Models.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("UsuarioId");
                 });
 
-            modelBuilder.Entity("EmissorPedidos.Models.Usuarios", b =>
+            modelBuilder.Entity("EmissorPedidos.Models.Usuario", b =>
                 {
                     b.HasOne("EmissorPedidos.Models.NivelUsuario", "NivelUsuario")
                         .WithMany("Usuarios")
