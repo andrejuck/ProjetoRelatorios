@@ -19,36 +19,7 @@ namespace EmissorPedidosAPI.Controllers
         {
             _companyRepository = companyRepository;
             _userRepository = userRepository;
-        }
-
-        [HttpGet]
-        public IActionResult GetCompanies()
-        {
-            var companies = _companyRepository.GetAll();
-            return Ok(companies);
-        }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public IActionResult GetUser(int id)
-        {
-            var user = _userRepository.Get(id);
-            return Ok(user);
-        }
-
-        // POST api/values
-        [HttpPost]
-        public IActionResult CreateUser([FromBody] User user)
-        {
-            if(ModelState.IsValid)
-            {
-
-                if (_userRepository.Create(user))
-                    return Ok();
-            }
-
-            return BadRequest();
-        }
+        }             
 
         // PUT api/values/5
         [HttpPut("{id}")]

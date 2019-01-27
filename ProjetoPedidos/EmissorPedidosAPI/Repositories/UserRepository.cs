@@ -12,7 +12,7 @@ namespace EmissorPedidosAPI.Repositories
     {
         private readonly ICompanyRepository _companyRepository;
 
-        public UserRepository(ApiDBContext context, 
+        public UserRepository(ApiDBContext context,
             ICompanyRepository companyrepository) : base(context)
         {
             _companyRepository = companyrepository;
@@ -35,7 +35,8 @@ namespace EmissorPedidosAPI.Repositories
             try
             {
                 var company = _context.Companies
-                    .Include(u => u.Users).Where(c => c.Id == model.Company.Id).First();
+                    .Include(u => u.Users)
+                    .Where(c => c.Id == model.Company.Id).FirstOrDefault();
 
                 var user = model;
                 company.Users.Add(user);
@@ -51,10 +52,38 @@ namespace EmissorPedidosAPI.Repositories
             }
         }
 
-        public bool Delete(User model)
+        public bool Update(User model)
         {
             try
             {
+                _context.Users.Update(model);
+                var db = _context.SaveChanges();
+                if (db > 0)
+                    return true;
+
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public bool Delete(int id)
+        {
+            try
+            {
+                var model = _context.Users
+                    .Include(p => p.Phones)
+                    .Where(u => u.Id == id)
+                    .FirstOrDefault();
+
+                if (model == null)
+                    return false;
+
+                _context.Phones.RemoveRange(model.Phones);
                 _context.Users.Remove(model);
                 var db = _context.SaveChanges();
                 if (db > 0)
@@ -73,20 +102,31 @@ namespace EmissorPedidosAPI.Repositories
         {
             return _context.Users
                 .Where(u => u.Id == id)
-                //.Select(u => new User
-                //{
-                //    Id = u.Id,
-                //    Email = u.Email,
-                //    Login = u.Login,
-                //    UserName = u.UserName,
-                //    Password = u.Password
-                //})
                 .FirstOrDefault();
+        }
+
+        public IList<User> GetUsersFromCompany(int idCompany)
+        {
+            try
+            {
+                return _context.Users
+                    .Include(p => p.Phones)
+                    .Where(u => u.Company.Id == idCompany)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
 
         public IList<User> GetAll()
         {
             return _context.Users.ToList();
         }
+
+        
     }
 }

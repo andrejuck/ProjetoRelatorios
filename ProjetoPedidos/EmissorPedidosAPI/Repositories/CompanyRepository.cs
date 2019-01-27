@@ -19,7 +19,7 @@ namespace EmissorPedidosAPI.Repositories
             throw new NotImplementedException();
         }
 
-        public bool Delete(Company model)
+        public bool Delete(int id)
         {
             throw new NotImplementedException();
         }
@@ -57,6 +57,11 @@ namespace EmissorPedidosAPI.Repositories
                     Address = _context.Addresses.Where(a => a.Company.Id == c.Id).ToList()
 
                 }).ToList();
+        }
+
+        public bool Update(Company model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

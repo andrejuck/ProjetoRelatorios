@@ -23,7 +23,8 @@ namespace EmissorPedidosAPI.Repositories.Interfaces
         /// </summary>
         /// <returns></returns>
         IList<T> GetAll();        
-        bool Delete(T model);
+        bool Delete(int id);
         bool Create(T model);
+        bool Update(T model);
     }
 }

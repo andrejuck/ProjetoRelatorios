@@ -19,7 +19,7 @@ namespace EmissorPedidosAPI.Repositories
             throw new NotImplementedException();
         }
 
-        public bool Delete(Address model)
+        public bool Delete(int  id)
         {
             throw new NotImplementedException();
         }
@@ -30,6 +30,11 @@ namespace EmissorPedidosAPI.Repositories
         }
 
         public IList<Address> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update(Address model)
         {
             throw new NotImplementedException();
         }
