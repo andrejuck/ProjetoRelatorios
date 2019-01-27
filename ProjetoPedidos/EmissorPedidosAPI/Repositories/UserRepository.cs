@@ -36,7 +36,8 @@ namespace EmissorPedidosAPI.Repositories
             {
                 var company = _context.Companies
                     .Include(u => u.Users)
-                    .Where(c => c.Id == model.Company.Id).FirstOrDefault();
+                    .Where(c => c.Id == model.Company.Id)
+                    .FirstOrDefault();
 
                 var user = model;
                 company.Users.Add(user);
