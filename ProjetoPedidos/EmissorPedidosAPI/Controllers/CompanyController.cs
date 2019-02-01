@@ -12,13 +12,11 @@ namespace EmissorPedidosAPI.Controllers
     [ApiController]
     public class CompanyController : ControllerBase
     {
-        private readonly ICompanyRepository _companyRepository;
-        private readonly IUserRepository _userRepository;
+        private readonly ICompanyRepository _companyRepository;        
 
-        public CompanyController(ICompanyRepository companyRepository, IUserRepository userRepository)
+        public CompanyController(ICompanyRepository companyRepository)
         {
             _companyRepository = companyRepository;
-            _userRepository = userRepository;
         }
 
         //GET /api/Company
