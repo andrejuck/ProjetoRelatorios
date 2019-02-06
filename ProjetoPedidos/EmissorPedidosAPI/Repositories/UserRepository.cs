@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EmissorPedidosAPI.Repositories
 {
@@ -30,7 +31,7 @@ namespace EmissorPedidosAPI.Repositories
         //		{"phoneNumber": "6516518" }
         //	]
         //}
-        public bool Create(User model)
+        public async Task<bool> Create(User model)
         {
             try
             {
@@ -41,8 +42,7 @@ namespace EmissorPedidosAPI.Repositories
 
                 var user = model;
                 company.Users.Add(user);
-                var db = _context.SaveChanges();
-                if (db > 0)
+                if (await _context.SaveChangesAsync() > 0)
                     return true;
 
                 return false;
@@ -53,13 +53,12 @@ namespace EmissorPedidosAPI.Repositories
             }
         }
 
-        public bool Update(User model)
+        public async Task<bool> Update(User model)
         {
             try
             {
                 _context.Users.Update(model);
-                var db = _context.SaveChanges();
-                if (db > 0)
+                if (await _context.SaveChangesAsync() > 0)
                     return true;
 
                 return false;
@@ -72,7 +71,7 @@ namespace EmissorPedidosAPI.Repositories
             }
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             try
             {
@@ -86,8 +85,8 @@ namespace EmissorPedidosAPI.Repositories
 
                 _context.Phones.RemoveRange(model.Phones);
                 _context.Users.Remove(model);
-                var db = _context.SaveChanges();
-                if (db > 0)
+
+                if (await _context.SaveChangesAsync() > 0)
                     return true;
 
                 return false;
@@ -97,13 +96,6 @@ namespace EmissorPedidosAPI.Repositories
 
                 throw ex;
             }
-        }
-
-        public User Get(int id)
-        {
-            return _context.Users
-                .Where(u => u.Id == id)
-                .FirstOrDefault();
         }
 
         public IList<User> GetUsersFromCompany(int idCompany)
@@ -123,11 +115,17 @@ namespace EmissorPedidosAPI.Repositories
 
         }
 
-        public IList<User> GetAll()
+        public async Task<IList<User>> GetAll()
         {
-            return _context.Users.ToList();
+            return await _context.Users.ToListAsync();
         }
 
-        
+        public async Task<User> Get(int id)
+        {
+            return await _context.Users
+                .Where(u => u.Id == id)
+                .FirstOrDefaultAsync();
+        }
+                
     }
 }

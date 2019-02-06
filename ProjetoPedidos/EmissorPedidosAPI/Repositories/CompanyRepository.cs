@@ -9,10 +9,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EmissorPedidosAPI.Repositories
 {
+    //TODO - Work on errors for each saveChanges return message; 
     public class CompanyRepository : BaseRepository<Company>, ICompanyRepository
     {
-        public CompanyRepository(ApiDBContext context) : base(context)
+        private readonly ICompanyAuditRepository _companyAuditRepository;
+        public CompanyRepository(ApiDBContext context,
+            ICompanyAuditRepository companyAuditRepository) : base(context)
         {
+            _companyAuditRepository = companyAuditRepository;
         }
 
         public bool Create(Company model)
@@ -31,7 +35,9 @@ namespace EmissorPedidosAPI.Repositories
                 };
 
                 _context.Add(newCompany);
-                _context.SaveChanges();
+
+                if (_context.SaveChanges() < 0)
+                    return false;
 
                 var user = _context.Users  
                     .Include(c => c.Company)
@@ -39,16 +45,23 @@ namespace EmissorPedidosAPI.Repositories
                     .FirstOrDefault();
 
                 user.Company = newCompany;
-                _context.Update(user);
-                _context.SaveChanges();
 
-                return false;
+                _context.Update(user);
+                if (_context.SaveChanges() < 0)
+                    return false;
+                else
+                    return _companyAuditRepository.Create(newCompany, "Created");               
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
+        }
+
+        public bool Update(Company model)
+        {
+            throw new Exception("Função não implementada");
         }
 
         public bool Delete(int id)
@@ -91,9 +104,6 @@ namespace EmissorPedidosAPI.Repositories
                 }).ToList();
         }
 
-        public bool Update(Company model)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

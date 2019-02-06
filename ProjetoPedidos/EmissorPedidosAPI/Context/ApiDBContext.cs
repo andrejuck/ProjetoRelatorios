@@ -17,7 +17,13 @@ namespace EmissorPedidosAPI.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Phone> Phones { get; set; }
-        
+        public DbSet<ChartAccount> ChartAccounts { get; set; }
+        public DbSet<Expense> Expenses { get; set; }
+
+        #region Audits
+        public DbSet<CompanyAudit> CompaniesAudit { get; set; }
+        #endregion
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -42,6 +48,11 @@ namespace EmissorPedidosAPI.Context
             modelBuilder.Entity<User>()
                 .Property(u => u.Activated)
                 .HasDefaultValue(true);
+            #endregion
+
+            #region Expenses
+            modelBuilder.Entity<Expense>()
+                .HasOne(u => u.User);
             #endregion
 
             base.OnModelCreating(modelBuilder);

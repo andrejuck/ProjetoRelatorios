@@ -14,5 +14,6 @@ namespace EmissorPedidosAPI.Models
         public IList<Phone> Phones { get; set; }
         public IList<Address> Addresses {get; set;}
         public IList<User> Users {get; set;}
+        public IList<CompanyAudit> CompaniesAudit { get; set; } 
     }
 }

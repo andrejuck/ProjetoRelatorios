@@ -45,5 +45,14 @@ namespace EmissorPedidosAPI.Controllers
 
             return BadRequest();
         }
+
+        [HttpPut]
+        public IActionResult UpdateCompanly([FromBody] Company company)
+        {
+            if (_companyRepository.Update(company))
+                return Ok();
+
+            return BadRequest();
+        }
     }
 }

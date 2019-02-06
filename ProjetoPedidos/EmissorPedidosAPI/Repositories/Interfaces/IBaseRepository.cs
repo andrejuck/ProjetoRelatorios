@@ -17,14 +17,14 @@ namespace EmissorPedidosAPI.Repositories.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        T Get(int id);
+        Task<T> Get(int id);
         /// <summary>
         /// Get all registries from database
         /// </summary>
         /// <returns></returns>
-        IList<T> GetAll();        
-        bool Delete(int id);
-        bool Create(T model);
-        bool Update(T model);
+        Task<IList<T>> GetAll();        
+        Task<bool> Delete(int id);
+        Task<bool> Create(T model);
+        Task<bool> Update(T model);
     }
 }

@@ -10,6 +10,8 @@ namespace EmissorPedidosAPI.Models
         public string UserName { get; set; }
         public bool Activated { get; set; }
         public IList<Phone> Phones { get; set; }
+        public IList<CompanyAudit> CompaniesAudit { get; set; }
+        public IList<ChartAccount> ChartAccounts { get; set; }
         public virtual Company Company { get; set; }      
 
     }
