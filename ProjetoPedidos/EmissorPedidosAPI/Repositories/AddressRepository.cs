@@ -14,27 +14,27 @@ namespace EmissorPedidosAPI.Repositories
         {
         }
 
-        public bool Create(Address model)
+        public Task<bool> Create(Address model)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(int  id)
+        public Task<bool> Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Address Get(int id)
+        public Task<Address> Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IList<Address> GetAll()
+        public Task<IList<Address>> GetAll(int idUser)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(Address model)
+        public Task<bool> Update(Address model)
         {
             throw new NotImplementedException();
         }

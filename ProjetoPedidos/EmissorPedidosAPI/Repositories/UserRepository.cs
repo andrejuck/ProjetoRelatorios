@@ -73,6 +73,7 @@ namespace EmissorPedidosAPI.Repositories
 
         public async Task<bool> Delete(int id)
         {
+            throw new NotImplementedException();
             try
             {
                 var model = _context.Users
@@ -115,7 +116,7 @@ namespace EmissorPedidosAPI.Repositories
 
         }
 
-        public async Task<IList<User>> GetAll()
+        public async Task<IList<User>> GetAll(int idCompany)
         {
             return await _context.Users.ToListAsync();
         }

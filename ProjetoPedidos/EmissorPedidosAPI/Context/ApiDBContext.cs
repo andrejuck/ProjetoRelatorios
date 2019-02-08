@@ -19,6 +19,9 @@ namespace EmissorPedidosAPI.Context
         public DbSet<Phone> Phones { get; set; }
         public DbSet<ChartAccount> ChartAccounts { get; set; }
         public DbSet<Expense> Expenses { get; set; }
+        public DbSet<PaymentType> PaymentTypes { get; set; }
+        public DbSet<Bank> Banks { get; set; }
+        public DbSet<BankAccount> BankAccounts { get; set; }
 
         #region Audits
         public DbSet<CompanyAudit> CompaniesAudit { get; set; }
@@ -53,6 +56,17 @@ namespace EmissorPedidosAPI.Context
             #region Expenses
             modelBuilder.Entity<Expense>()
                 .HasOne(u => u.User);
+            #endregion
+
+            #region PaymentType
+            //Populating default values for types of payment
+            modelBuilder.Entity<PaymentType>()
+                .HasData(
+                    new PaymentType() { Id = 1, Description = "Dinheiro" },
+                    new PaymentType() { Id = 2, Description = "Boleto" },
+                    new PaymentType() { Id = 3, Description = "Cartão de Crédito" },
+                    new PaymentType() { Id = 4, Description = "Cartão de Débito" }
+                );
             #endregion
 
             base.OnModelCreating(modelBuilder);

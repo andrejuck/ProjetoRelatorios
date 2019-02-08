@@ -14,27 +14,27 @@ namespace EmissorPedidosAPI.Repositories
         {
         }
 
-        public bool Create(Phone model)
+        public Task<bool> Create(Phone model)
         {
             throw new NotImplementedException();
         }
 
-        public bool Delete(int id)
+        public Task<bool> Delete(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Phone Get(int id)
+        public Task<Phone> Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IList<Phone> GetAll()
+        public Task<IList<Phone>> GetAll(int idUser)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(Phone model)
+        public Task<bool> Update(Phone model)
         {
             throw new NotImplementedException();
         }

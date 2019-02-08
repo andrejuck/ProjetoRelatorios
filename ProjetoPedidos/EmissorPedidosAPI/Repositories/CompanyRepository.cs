@@ -19,22 +19,22 @@ namespace EmissorPedidosAPI.Repositories
             _companyAuditRepository = companyAuditRepository;
         }
 
-        public bool Create(Company model)
+        public async Task<bool> Create(Company model)
         {
             try
             {
-                var newCompany = new Company
-                {
-                    Addresses = model.Addresses,
-                    Email = model.Email,
-                    FantasyName = model.FantasyName,
-                    Phones = model.Phones,
-                    SocialName = model.SocialName,
-                    StateSubscription = model.StateSubscription,
-                    Subscription = model.Subscription
-                };
+                //var newCompany = new Company
+                //{
+                //    Addresses = model.Addresses,
+                //    Email = model.Email,
+                //    FantasyName = model.FantasyName,
+                //    Phones = model.Phones,
+                //    SocialName = model.SocialName,
+                //    StateSubscription = model.StateSubscription,
+                //    Subscription = model.Subscription
+                //};
 
-                _context.Add(newCompany);
+                _context.Add(model);
 
                 if (_context.SaveChanges() < 0)
                     return false;
@@ -44,13 +44,13 @@ namespace EmissorPedidosAPI.Repositories
                     .Where(u => u.Id == model.Users.FirstOrDefault().Id)
                     .FirstOrDefault();
 
-                user.Company = newCompany;
+                user.Company = model;
 
                 _context.Update(user);
-                if (_context.SaveChanges() < 0)
+                if (await _context.SaveChangesAsync() < 0)
                     return false;
                 else
-                    return _companyAuditRepository.Create(newCompany, "Created");               
+                    return _companyAuditRepository.Create(model, "Created");               
             }
             catch (Exception ex)
             {
@@ -59,19 +59,19 @@ namespace EmissorPedidosAPI.Repositories
             }
         }
 
-        public bool Update(Company model)
+        public async Task<bool> Update(Company model)
         {
             throw new Exception("Função não implementada");
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            throw new Exception("Função não implementada");
         }
 
-        public Company Get(int id)
+        public async Task<Company> Get(int id)
         {
-            return _context.Companies
+            return await _context.Companies
                 .Where(c => c.Id == id)
                 .Select(c => new Company
                 {
@@ -83,13 +83,13 @@ namespace EmissorPedidosAPI.Repositories
                     Subscription = c.Subscription,
                     Phones = _context.Phones.Where(p => p.Company.Id == c.Id).ToList(),
                     Addresses = _context.Addresses.Where(a => a.Company.Id == c.Id).ToList()
-                }).FirstOrDefault();
+                }).FirstOrDefaultAsync();
         }
 
-        public IList<Company> GetAll()
+        public async Task<IList<Company>> GetAll(int idUser)
         {
 
-            return _context.Companies
+            return await _context.Companies
                 .Select(c => new Company
                 {
                     Id = c.Id,
@@ -101,7 +101,7 @@ namespace EmissorPedidosAPI.Repositories
                     Phones = _context.Phones.Where(p => p.Company.Id == c.Id).ToList(),
                     Addresses = _context.Addresses.Where(a => a.Company.Id == c.Id).ToList()
 
-                }).ToList();
+                }).ToListAsync();
         }
 
         

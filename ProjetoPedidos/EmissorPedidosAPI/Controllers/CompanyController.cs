@@ -24,8 +24,8 @@ namespace EmissorPedidosAPI.Controllers
         public IActionResult GetCompanies()
         {
 
-            var companies = _companyRepository.GetAll();
-            return Ok(companies);
+            //var companies = _companyRepository.GetAll();
+            return Ok();
         }
 
         [HttpGet("{id}")]
@@ -37,19 +37,19 @@ namespace EmissorPedidosAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCompany([FromBody] Company company)
+        public async Task<IActionResult> CreateCompany([FromBody] Company company)
         {
 
-            if (_companyRepository.Create(company))
+            if (await _companyRepository.Create(company))
                 return Ok();
 
             return BadRequest();
         }
 
         [HttpPut]
-        public IActionResult UpdateCompanly([FromBody] Company company)
+        public async Task<IActionResult> UpdateCompanly([FromBody] Company company)
         {
-            if (_companyRepository.Update(company))
+            if (await _companyRepository.Update(company))
                 return Ok();
 
             return BadRequest();

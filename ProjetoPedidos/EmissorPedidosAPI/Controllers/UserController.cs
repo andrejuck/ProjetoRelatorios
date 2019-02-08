@@ -42,12 +42,12 @@ namespace EmissorPedidosAPI.Controllers
 
         // POST api/user/createUser
         [HttpPost]                
-        public IActionResult CreateUser([FromBody] User user)
+        public async Task<IActionResult> CreateUser([FromBody] User user)
         {
             if (ModelState.IsValid)
             {
 
-                if (_userRepository.Create(user))
+                if (await _userRepository.Create(user))
                     return Ok();
             }
 
@@ -55,11 +55,11 @@ namespace EmissorPedidosAPI.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateUser([FromBody] User user)
+        public async Task<IActionResult> UpdateUser([FromBody] User user)
         {
             if (ModelState.IsValid)
             {
-                if (_userRepository.Update(user))
+                if (await _userRepository.Update(user))
                     return Ok();
             }
 
@@ -67,9 +67,9 @@ namespace EmissorPedidosAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
+        public async Task<IActionResult> DeleteUser(int id)
         {
-            if (_userRepository.Delete(id))
+            if (await _userRepository.Delete(id))
                 return Ok();
 
             return BadRequest();

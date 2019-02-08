@@ -9,33 +9,29 @@ using System.Threading.Tasks;
 
 namespace EmissorPedidosAPI.Repositories
 {
-    public class ExpenseRepository : BaseRepository<Expense>, IExpenseRepository
+    public class BankAccountRepository : BaseRepository<BankAccount>, IBankAccountRepository
     {
-        public ExpenseRepository(ApiDBContext context) : base(context)
+        public BankAccountRepository(ApiDBContext context) : base(context)
         {
         }
 
-        public async Task<bool> Create(Expense model)
+        public async Task<bool> Create(BankAccount model)
         {
             try
             {
+                //testar
                 var user = _context.Users
-                    .Include(ex => ex.Expenses)
+                    .Include(ba => ba.BankAccounts)
                     .Where(w => w.Id == model.User.Id)
                     .SingleOrDefault();
 
-                var bankAccount = _context.BankAccounts
-                    .Include(ex => ex.Expenses)
-                    .Where(w => w.Id == model.BankAccount.Id)
+                var bank = _context.Banks
+                    .Include(ba => ba.BankAccounts)
+                    .Where(w => w.Id == model.Bank.Id)
                     .SingleOrDefault();
 
-                var paymentType = _context.PaymentTypes
-                    .Include(ex => ex.Expenses)
-                    .Where(w => w.Id == model.PaymentType.Id)
-                    .SingleOrDefault();
+                bank.BankAccounts.Add(model);
 
-                //testar
-                user.Expenses.Add(model);
                 if (await _context.SaveChangesAsync() > 0)
                     return true;
 
@@ -43,8 +39,7 @@ namespace EmissorPedidosAPI.Repositories
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Error on creating Expense: " + ex.Message);
+                throw new Exception("Error on creating bank account" + ex.Message);
             }
         }
 
@@ -52,9 +47,8 @@ namespace EmissorPedidosAPI.Repositories
         {
             try
             {
-                var expense = await Get(id);
-
-                _context.Expenses.Remove(expense);
+                var bankAccount = await Get(id);
+                _context.BankAccounts.Remove(bankAccount);
                 if (await _context.SaveChangesAsync() > 0)
                     return true;
 
@@ -62,46 +56,43 @@ namespace EmissorPedidosAPI.Repositories
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Error on deleting Expense: " + ex.Message);
+                throw new Exception("Error on deleting Bank account" + ex.Message);
             }
         }
 
-        public async Task<Expense> Get(int id)
+        public async Task<BankAccount> Get(int id)
         {
             try
             {
-                return await _context.Expenses
+                return await _context.BankAccounts
                     .Where(w => w.Id == id)
-                    .SingleOrDefaultAsync();                
+                    .SingleOrDefaultAsync();
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Error on getting Expense: " + ex.Message);
+                throw new Exception("Error on getting Bank Account" + ex.Message);
             }
         }
 
-        public async Task<IList<Expense>> GetAll(int idUser)
+        public async Task<IList<BankAccount>> GetAll(int idUser)
         {
             try
             {
-                return await _context.Expenses
+                return await _context.BankAccounts
                     .Where(w => w.User.Id == idUser)
                     .ToListAsync();
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Error on getting all Expenses: " + ex.Message);
+                throw new Exception("Error on getting all bank accounts" + ex.Message);
             }
         }
 
-        public async Task<bool> Update(Expense model)
+        public async Task<bool> Update(BankAccount model)
         {
             try
             {
-                _context.Expenses.Update(model);
+                _context.BankAccounts.Update(model);
                 if (await _context.SaveChangesAsync() > 0)
                     return true;
 
@@ -109,8 +100,7 @@ namespace EmissorPedidosAPI.Repositories
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Error on updating Expense: " + ex.Message);
+                throw new Exception("Error on updating Bank Account" + ex.Message);
             }
         }
     }

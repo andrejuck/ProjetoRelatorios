@@ -22,7 +22,7 @@ namespace EmissorPedidosAPI.Repositories.Interfaces
         /// Get all registries from database
         /// </summary>
         /// <returns></returns>
-        Task<IList<T>> GetAll();        
+        Task<IList<T>> GetAll(int idUser);        
         Task<bool> Delete(int id);
         Task<bool> Create(T model);
         Task<bool> Update(T model);

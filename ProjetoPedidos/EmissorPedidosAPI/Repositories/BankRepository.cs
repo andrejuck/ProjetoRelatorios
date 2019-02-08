@@ -9,33 +9,22 @@ using System.Threading.Tasks;
 
 namespace EmissorPedidosAPI.Repositories
 {
-    public class ExpenseRepository : BaseRepository<Expense>, IExpenseRepository
+    public class BankRepository : BaseRepository<Bank>, IBankRepository
     {
-        public ExpenseRepository(ApiDBContext context) : base(context)
+        public BankRepository(ApiDBContext context) : base(context)
         {
         }
 
-        public async Task<bool> Create(Expense model)
+        public async Task<bool> Create(Bank model)
         {
             try
             {
                 var user = _context.Users
-                    .Include(ex => ex.Expenses)
+                    .Include(b => b.Banks)
                     .Where(w => w.Id == model.User.Id)
                     .SingleOrDefault();
 
-                var bankAccount = _context.BankAccounts
-                    .Include(ex => ex.Expenses)
-                    .Where(w => w.Id == model.BankAccount.Id)
-                    .SingleOrDefault();
-
-                var paymentType = _context.PaymentTypes
-                    .Include(ex => ex.Expenses)
-                    .Where(w => w.Id == model.PaymentType.Id)
-                    .SingleOrDefault();
-
-                //testar
-                user.Expenses.Add(model);
+                user.Banks.Add(model);
                 if (await _context.SaveChangesAsync() > 0)
                     return true;
 
@@ -43,8 +32,7 @@ namespace EmissorPedidosAPI.Repositories
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Error on creating Expense: " + ex.Message);
+                throw new Exception("Error on creating bank: " + ex.Message);
             }
         }
 
@@ -52,9 +40,8 @@ namespace EmissorPedidosAPI.Repositories
         {
             try
             {
-                var expense = await Get(id);
-
-                _context.Expenses.Remove(expense);
+                var bank = await Get(id);
+                _context.Banks.Remove(bank);
                 if (await _context.SaveChangesAsync() > 0)
                     return true;
 
@@ -62,46 +49,44 @@ namespace EmissorPedidosAPI.Repositories
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Error on deleting Expense: " + ex.Message);
+                throw new Exception("Error on deleting bank: " + ex.Message);
             }
         }
 
-        public async Task<Expense> Get(int id)
+        public async Task<Bank> Get(int id)
         {
             try
             {
-                return await _context.Expenses
+                return await _context.Banks
                     .Where(w => w.Id == id)
-                    .SingleOrDefaultAsync();                
+                    .SingleOrDefaultAsync();
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Error on getting Expense: " + ex.Message);
+                throw new Exception("Error on getting bank: ");
             }
         }
 
-        public async Task<IList<Expense>> GetAll(int idUser)
+        public async Task<IList<Bank>> GetAll(int idUser)
         {
             try
             {
-                return await _context.Expenses
+                return await _context.Banks
                     .Where(w => w.User.Id == idUser)
                     .ToListAsync();
             }
             catch (Exception ex)
             {
 
-                throw new Exception("Error on getting all Expenses: " + ex.Message);
+                throw new Exception("Error on getting all banks" + ex.Message);
             }
         }
 
-        public async Task<bool> Update(Expense model)
+        public async Task<bool> Update(Bank model)
         {
             try
             {
-                _context.Expenses.Update(model);
+                _context.Banks.Update(model);
                 if (await _context.SaveChangesAsync() > 0)
                     return true;
 
@@ -110,7 +95,7 @@ namespace EmissorPedidosAPI.Repositories
             catch (Exception ex)
             {
 
-                throw new Exception("Error on updating Expense: " + ex.Message);
+                throw new Exception("Error on updating bank: " + ex.Message);
             }
         }
     }
