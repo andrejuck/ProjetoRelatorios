@@ -12,7 +12,6 @@ namespace EmissorPedidosAPI.Controllers
     [ApiController]
     public class ExpenseController : ControllerBase
     {
-        //TODO - TESTAR METODOS
         private readonly IExpenseRepository _expenseRepository;
 
         public ExpenseController(IExpenseRepository expenseRepository)

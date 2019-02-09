@@ -9,6 +9,6 @@ namespace EmissorPedidosAPI.Repositories.Interfaces
     public interface IUserRepository : IBaseRepository<User>
     {
         IList<User> GetUsersFromCompany(int idCompany);
-        
+        User Authenticate(string login, string password);
     }
 }

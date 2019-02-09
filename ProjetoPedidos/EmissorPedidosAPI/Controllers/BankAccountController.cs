@@ -12,7 +12,6 @@ namespace EmissorPedidosAPI.Controllers
     [ApiController]
     public class BankAccountController : ControllerBase
     {
-        //TODO - TESTAR METODOS
         private readonly IBankAccountRepository _bankAccountRepository;
 
         public BankAccountController(IBankAccountRepository bankAccountRepository)
