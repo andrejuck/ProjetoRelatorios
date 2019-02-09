@@ -43,6 +43,7 @@ namespace EmissorPedidosAPI
             services.AddTransient<IChartAccountRepository, ChartAccountRepository>();
             services.AddTransient<IBankAccountRepository, BankAccountRepository>();
             services.AddTransient<IBankRepository, BankRepository>();
+            services.AddTransient<IIncomeRepository, IncomeRepository>();
 
             services.AddTransient<ICompanyAuditRepository, CompanyAuditRepository>();
         }

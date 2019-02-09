@@ -29,14 +29,14 @@ namespace EmissorPedidosAPI.Controllers
             return BadRequest();
         }
 
-        [HttpGet]
+        [HttpGet("{idUser}")]
         public async Task<IActionResult> GetAllBanks(int idUser)
         {
             var banks = await _bankRepository.GetAll(idUser);
             return Ok(banks);
         }
 
-        [HttpGet]
+        [HttpGet("{idBank}")]
         public async Task<IActionResult> GetBank(int idBank)
         {
             var bank = await _bankRepository.Get(idBank);
@@ -52,7 +52,7 @@ namespace EmissorPedidosAPI.Controllers
             return BadRequest();
         }
 
-        [HttpDelete]
+        [HttpDelete("{idBank}")]
         public async Task<IActionResult> DeleteBank(int idBank)
         {
             if (await _bankRepository.Delete(idBank))

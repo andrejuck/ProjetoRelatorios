@@ -24,17 +24,21 @@ namespace EmissorPedidosAPI.Repositories
                     .Where(w => w.Id == model.User.Id)
                     .SingleOrDefault();
 
-                var bankAccount = _context.BankAccounts
+                _context.BankAccounts
                     .Include(ex => ex.Expenses)
                     .Where(w => w.Id == model.BankAccount.Id)
                     .SingleOrDefault();
 
-                var paymentType = _context.PaymentTypes
+                _context.PaymentTypes
                     .Include(ex => ex.Expenses)
                     .Where(w => w.Id == model.PaymentType.Id)
                     .SingleOrDefault();
 
-                //testar
+                _context.ChartAccounts
+                    .Include(ex => ex.Expenses)
+                    .Where(w => w.Id == model.ChartAccount.Id)
+                    .SingleOrDefault();
+
                 user.Expenses.Add(model);
                 if (await _context.SaveChangesAsync() > 0)
                     return true;
@@ -72,6 +76,7 @@ namespace EmissorPedidosAPI.Repositories
             try
             {
                 return await _context.Expenses
+                    .Include(u => u.User)
                     .Where(w => w.Id == id)
                     .SingleOrDefaultAsync();                
             }
@@ -87,6 +92,7 @@ namespace EmissorPedidosAPI.Repositories
             try
             {
                 return await _context.Expenses
+                    .Include(u => u.User)
                     .Where(w => w.User.Id == idUser)
                     .ToListAsync();
             }

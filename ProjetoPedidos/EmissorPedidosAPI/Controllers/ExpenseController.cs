@@ -29,14 +29,14 @@ namespace EmissorPedidosAPI.Controllers
             return BadRequest();
         }
 
-        [HttpGet]
+        [HttpGet("{idUser}")]
         public async Task<IActionResult> GetAllExpenses(int idUser)
         {
             var expenses = await _expenseRepository.GetAll(idUser);
             return Ok(expenses);
         }
 
-        [HttpGet]
+        [HttpGet("{idExpense}")]
         public async Task<IActionResult> GetExpense(int idExpense)
         {
             var expense = await _expenseRepository.Get(idExpense);
@@ -52,7 +52,7 @@ namespace EmissorPedidosAPI.Controllers
             return BadRequest();
         }
 
-        [HttpDelete]
+        [HttpDelete("{idExpense}")]
         public async Task<IActionResult> DeleteExpense(int idExpense)
         {
             if (await _expenseRepository.Delete(idExpense))

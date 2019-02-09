@@ -22,6 +22,7 @@ namespace EmissorPedidosAPI.Context
         public DbSet<PaymentType> PaymentTypes { get; set; }
         public DbSet<Bank> Banks { get; set; }
         public DbSet<BankAccount> BankAccounts { get; set; }
+        public DbSet<Income> Incomes { get; set; }
 
         #region Audits
         public DbSet<CompanyAudit> CompaniesAudit { get; set; }

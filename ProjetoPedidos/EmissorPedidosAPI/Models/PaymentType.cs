@@ -9,5 +9,6 @@ namespace EmissorPedidosAPI.Models
     {
         public string Description { get; set; }
         public IList<Expense> Expenses { get; set; }
+        public IList<Income> Incomes { get; set; }
     }
 }

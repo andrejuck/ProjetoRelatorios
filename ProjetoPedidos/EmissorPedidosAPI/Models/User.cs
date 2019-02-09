@@ -15,6 +15,7 @@ namespace EmissorPedidosAPI.Models
         public IList<Expense> Expenses { get; set; }
         public IList<BankAccount> BankAccounts { get; set; }
         public IList<Bank> Banks { get; set; }
+        public IList<Income> Incomes { get; set; }
         public virtual Company Company { get; set; }      
 
     }

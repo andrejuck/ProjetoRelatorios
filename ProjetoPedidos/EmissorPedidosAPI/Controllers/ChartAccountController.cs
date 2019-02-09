@@ -19,14 +19,14 @@ namespace EmissorPedidosAPI.Controllers
             _chartAccountRepository = chartAccountRepository;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetChartAccount(int idChart)
+        [HttpGet("{idChartAccount}")]
+        public IActionResult GetChartAccount(int idChartAccount)
         {
-            var chartAccount = _chartAccountRepository.Get(idChart);
+            var chartAccount = _chartAccountRepository.Get(idChartAccount);
             return Ok(chartAccount);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{idUser}")]
         public IActionResult GetChartAccounts(int idUser)
         {
             var chartAccount = _chartAccountRepository.GetAll(idUser);
@@ -34,7 +34,7 @@ namespace EmissorPedidosAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateChartAccounts([FromBody] ChartAccount chartAccount)
+        public async Task<IActionResult> CreateChartAccount([FromBody] ChartAccount chartAccount)
         {
             if (ModelState.IsValid)
             {
@@ -46,10 +46,10 @@ namespace EmissorPedidosAPI.Controllers
             return BadRequest();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteChartAccount(int idChart)
+        [HttpDelete("{idChartAccount}")]
+        public async Task<IActionResult> DeleteChartAccount(int idChartAccount)
         {
-            if (await _chartAccountRepository.Delete(idChart))
+            if (await _chartAccountRepository.Delete(idChartAccount))
                 return Ok();
 
             return BadRequest();

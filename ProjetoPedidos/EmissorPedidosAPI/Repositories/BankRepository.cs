@@ -58,12 +58,13 @@ namespace EmissorPedidosAPI.Repositories
             try
             {
                 return await _context.Banks
+                    .Include(u => u.User)
                     .Where(w => w.Id == id)
                     .SingleOrDefaultAsync();
             }
             catch (Exception ex)
             {
-                throw new Exception("Error on getting bank: ");
+                throw new Exception("Error on getting bank: " + ex.Message);
             }
         }
 
@@ -72,6 +73,7 @@ namespace EmissorPedidosAPI.Repositories
             try
             {
                 return await _context.Banks
+                    .Include(u => u.User)
                     .Where(w => w.User.Id == idUser)
                     .ToListAsync();
             }

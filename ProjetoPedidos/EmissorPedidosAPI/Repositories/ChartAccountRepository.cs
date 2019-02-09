@@ -67,6 +67,7 @@ namespace EmissorPedidosAPI.Repositories
         public async Task<ChartAccount> Get(int idChart)
         {
             return await _context.ChartAccounts
+                .Include(u => u.User)
                 .Where(c => c.Id == idChart)
                 .SingleOrDefaultAsync();
         }
@@ -76,8 +77,9 @@ namespace EmissorPedidosAPI.Repositories
         public async Task<IList<ChartAccount>> GetAll(int idUser)
         {
             return await _context.ChartAccounts
-                    .Where(u => u.User.Id == idUser)
-                    .ToListAsync();
+                .Include(u => u.User)
+                .Where(u => u.User.Id == idUser)
+                .ToListAsync();
         }
 
         public async Task<IList<ChartAccount>> GetAll()

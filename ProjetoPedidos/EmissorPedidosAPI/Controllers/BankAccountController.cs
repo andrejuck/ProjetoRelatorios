@@ -29,14 +29,14 @@ namespace EmissorPedidosAPI.Controllers
             return BadRequest();
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllBankAccount(int idUser)
+        [HttpGet("{idUser}")]
+        public async Task<IActionResult> GetAllBankAccounts(int idUser)
         {
             var bankAccounts = await _bankAccountRepository.GetAll(idUser);
             return Ok(bankAccounts);
         }
 
-        [HttpGet]
+        [HttpGet("{idBankAccount}")]
         public async Task<IActionResult> GetBankAccount(int idBankAccount)
         {
             var bankAccount = await _bankAccountRepository.Get(idBankAccount);
@@ -52,7 +52,7 @@ namespace EmissorPedidosAPI.Controllers
             return BadRequest();
         }
 
-        [HttpDelete]
+        [HttpDelete("{idBankAccount}")]
         public async Task<IActionResult> DeleteBankAccount(int idBankAccount)
         {
             if (await _bankAccountRepository.Delete(idBankAccount))
