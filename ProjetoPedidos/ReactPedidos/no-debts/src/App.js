@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import './dist/semantic.css';
 import './App.css';
 
 class App extends Component {
@@ -7,9 +7,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            <button className="ui button primary inverted">Teste</button>
           </p>
           <a
             className="App-link"
