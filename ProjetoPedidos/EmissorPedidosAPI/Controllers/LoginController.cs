@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace EmissorPedidosAPI.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class LoginController : ControllerBase
@@ -24,7 +23,7 @@ namespace EmissorPedidosAPI.Controllers
         [AllowAnonymous]
         [HttpPost]
         public IActionResult Authenticate([FromBody] User userParam)
-        {
+        { 
             var user = _userRepository.Authenticate(userParam.Login, userParam.Password);
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
