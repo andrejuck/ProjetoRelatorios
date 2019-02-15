@@ -3,11 +3,24 @@
 @cor-atencao: #FF9C01;
 @cor-sucesso: #2CCA2C;
 @cor-erro: #FD3737;
+@cor-preta: #000;
 
+//Mixings
+.display-flex-row {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+.display-flex-column {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+//Class for Page
 .ui {
-    display: block;
-    align-items: center;
-    justify-content: center;
+    .display-flex-column;
 }
 .ui.container {
     width: 100%;
@@ -22,6 +35,29 @@
     padding: 1.5rem 0.5rem;
     font-size: 1.125rem; 
 }
+
+//navbar (Header)
+.navbar {
+    .display-flex-row;
+    width: 100%;
+    background-color: @cor-preta;
+}
+.navbar.container {
+    .display-flex-row;
+    padding: 0 1.5rem;    
+    width: 100%;
+}
+.navbar.menu {
+    .display-flex-row;    
+    width: 100%;
+    margin: 1.5rem 0;
+}
+
+.navbar.menu > .itens {
+    .display-flex-row;
+    width: 100%;
+}
+
 .row {
     display: flex;
     flex-direction: row;
