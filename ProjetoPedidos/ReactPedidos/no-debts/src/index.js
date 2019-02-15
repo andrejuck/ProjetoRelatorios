@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './css/reset.css';
 import './css/media-queries.css';
-import './css/grid.css';
 import './css/main.css';
 import App from './App';
 import Login from './components/Login';
