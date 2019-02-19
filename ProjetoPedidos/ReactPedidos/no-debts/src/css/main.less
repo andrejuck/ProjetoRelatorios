@@ -8,28 +8,28 @@
 //Mixings
 .display-flex-row {
     display: flex;
-    align-content: center;
+    align-items: flex-start;
     justify-content: space-between;
 }
 .display-flex-column {
-    display: flex;
-    align-content: center;
-    justify-content: space-between;
+    .display-flex-row;
     flex-direction: column;
 }
 
+html, body {
+    height: 100%;
+}
+
 //Class for Page
-.ui {
-    .display-flex-column;
+.ui, #root {
+    .display-flex-row;
+    height: 100%;
 }
 .ui.container {
     width: 100%;
 }
 .ui.container > .login {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
+    .display-flex-row;
     margin-top: 5%;
     width: 25%;
     padding: 1.5rem 0.5rem;
@@ -38,24 +38,32 @@
 
 //navbar (Header)
 .navbar {
-    .display-flex-row;
-    width: 100%;
-    background-color: @cor-preta;
-}
-.navbar.container {
-    .display-flex-row;
-    padding: 0 1.5rem;    
-    width: 100%;
-}
-.navbar.menu {
     .display-flex-row;    
-    width: 100%;
-    margin: 1.5rem 0;
+    width: 90px;
+    height: 100%;
+    z-index: 100;
+    overflow-x: hidden;
+    transition: 0.3s;
+    background-color: @cor-preta;
+    &:hover {
+        width: 250px;        
+    }
+    &:hover .itens > .image {
+        align-content: center;
+    }
 }
 
-.navbar.menu > .itens {
-    .display-flex-row;
-    width: 100%;
+.navbar.container {
+    .display-flex-column;
+    padding: 1.0rem 1.5rem;    
+}
+
+.navbar.container .itens {
+    .display-flex-column;        
+}
+
+.navbar.image {
+    max-width: 40px;
 }
 
 .row {
@@ -65,9 +73,7 @@
     width: 100%;
 }
 .column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    .display-flex-column;
     padding: 0 1.0rem;
     width: 100%;
     margin-bottom: 0.8rem;
@@ -111,79 +117,6 @@
 .sixteen.wide {
     width: 100%;
 }
-.ui {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.ui.container {
-    width: 100%;
-}
-.ui.container > .login {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    margin-top: 5%;
-    width: 25%;
-    padding: 1.5rem 0.5rem;
-    font-size: 1.125rem; 
-}
-.row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-}
-.column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 1.0rem;
-    width: 100%;
-    margin-bottom: 0.8rem;
-}
-.column > .separator {
-    margin-bottom: 1.0rem;
-}
-.column > label {
-    margin-bottom: 0.30rem;
-}
-.header {
-    font-size: 2.0rem;
-    text-align: center;
-    letter-spacing: 0.35rem;
-}
-.separator {
-    width: 100%;
-    margin: 0;
-}
-.two.wide {
-    width: 12.5%;
-}
-.four.wide {
-    width: 25%;
-}
-.six.wide {
-    width: 37.5%;
-}
-.eight.wide {
-    width: 50%;
-}
-.ten.wide {
-    width: 62.5%;
-}
-.twelve.wide {
-    width: 75%;
-}
-.fourteen.wide {
-    width: 87.5%;
-}
-.sixteen.wide {
-    width: 100%;
-}
-
-
 input {
     padding: 8px 12px;
     border: 1px solid #ccc;
