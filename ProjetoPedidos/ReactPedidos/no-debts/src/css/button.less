@@ -1,0 +1,55 @@
+.btn {
+    padding: @padding-padrao-botao;
+    border-radius: @borda-arredondada-padrao;
+    font-weight: 500;
+    border: 2px solid;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn.primary {
+    color: @cor-branca;
+    background-color: @cor-primaria; /* primaria */
+    border-color: @cor-primaria;
+}
+    .btn.primary:hover {
+        background-color: lighten(@cor-primaria, 20%);
+        border-color: @cor-primaria;     
+    }
+.btn.secundary {
+    color: @cor-branca;
+    background-color: @cor-secundaria; /* secundaria */
+    border-color: @cor-secundaria;
+}
+    .btn.secundary:hover {
+        background-color: lighten(@cor-secundaria, 20%);
+        border-color: @cor-secundaria;     
+    }
+.btn.warning {
+    color: @cor-branca;
+    background-color: @cor-atencao; /* terciaria */
+    border-color: @cor-atencao;
+    
+}
+    .btn.warning:hover {
+        background-color: lighten(@cor-atencao, 20%);
+        border-color: @cor-atencao;     
+    }
+.btn.success {
+    color: @cor-branca;
+    background-color: @cor-sucesso;
+    border-color: @cor-sucesso;
+}
+    .btn.success:hover {
+        background-color: lighten(@cor-sucesso, 20%);
+        border-color: @cor-sucesso;     
+    }
+
+.btn.fail {
+    color: @cor-branca;
+    background-color: @cor-erro; 
+    border-color: @cor-erro;
+}
+    .btn.fail:hover {
+        background-color: lighten(@cor-erro, 20%);
+        border-color: @cor-erro;     
+    }

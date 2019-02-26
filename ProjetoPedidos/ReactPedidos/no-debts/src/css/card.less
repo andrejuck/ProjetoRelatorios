@@ -1,0 +1,39 @@
+.card {
+    .display-flex-column();
+    width: 100%;
+    border: @borda-estilo-primaria;
+    border-top: none;
+    border-radius: @borda-arredondada-padrao;
+    box-shadow: 0 @padding-padrao 0 rgba(@cor-preta, 0.3);
+}
+.card-header {
+    font-size: 1.2rem;
+    font-weight: 500;
+    width: 100%;
+    padding: @padding-padrao;
+    background-color: darken(@cor-branca, 5%) ;
+    border-top: @borda-estilo-primaria;
+}
+.card-body {    
+    width: 100%;
+    padding: @padding-padrao;
+    border-top: @borda-estilo-primaria;
+}
+.card-footer {
+    width: 100%;
+    padding: @padding-padrao;
+    border-top: @borda-estilo-primaria;
+    button {
+        float: right;
+        margin-left: 0.5rem;
+    }        
+}
+.card-footer.full {
+    padding: 0;
+    button {
+        width: 100%;
+        position: relative;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+}

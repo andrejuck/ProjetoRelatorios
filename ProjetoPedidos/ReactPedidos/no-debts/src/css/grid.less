@@ -1,0 +1,68 @@
+.row {
+    .display-flex-row(@align: top, @justify: flex-start);
+    width: 100%;
+}
+.column {
+    .display-flex-column;
+    padding: 0 1.0rem;
+    width: 100%;
+    margin-bottom: 0.8rem;
+}
+.column > .separator {
+    margin-bottom: 1.0rem;
+}
+.column > label {
+    margin-bottom: 0.30rem;
+}
+.separator {
+    width: 100%;
+    margin: 0;
+}
+.two.wide {
+    width: 12.5%;
+}
+.four.wide {
+    width: 25%;
+}
+.six.wide {
+    width: 37.5%;
+}
+.eight.wide {
+    width: 50%;
+}
+.ten.wide {
+    width: 62.5%;
+}
+.twelve.wide {
+    width: 75%;
+}
+.fourteen.wide {
+    width: 87.5%;
+}
+.sixteen.wide {
+    width: 100%;
+}
+input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;   
+}
+    input:focus {
+        outline-color: @cor-primaria; /* primaria */
+    }
+
+.primary {
+    color:@cor-primaria;
+}
+.secundary {
+    color: @cor-secundaria;
+}
+.terciary {
+    color:@cor-atencao;
+}
+.success {
+    color:@cor-sucesso;
+}
+.fail {
+    color:@cor-erro;
+}

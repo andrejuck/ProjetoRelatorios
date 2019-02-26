@@ -2,6 +2,7 @@
 @media only screen and (max-width: 600px) {
     .ui.container {
         margin: 0 3.0rem;
+        padding: 1.0rem 0rem;
     }
   }
   
@@ -9,6 +10,7 @@
   @media only screen and (min-width: 600px) {
     .ui.container {
         margin: 0 3.0rem;
+        padding: 1.0rem 0rem;
     }
   }
   
@@ -16,6 +18,7 @@
   @media only screen and (min-width: 768px) {
     .ui.container {
         margin: 0 3.0rem;
+        padding: 1.0rem 0rem;
     }
   } 
   
@@ -23,6 +26,7 @@
   @media only screen and (min-width: 992px) {
     .ui.container {
         margin: 0 3.0rem;
+        padding: 1.0rem 0rem;
     }
   } 
   
@@ -33,5 +37,6 @@
     }
     .ui.container {
         margin: 0 3.0rem;
+        padding: 1.0rem 0rem;
     }
   }

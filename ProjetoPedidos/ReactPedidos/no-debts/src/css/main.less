@@ -1,207 +1,95 @@
-@cor-primaria:#0E53A7;
-@cor-secundaria: #4E10AE;
-@cor-atencao: #FF9C01;
-@cor-sucesso: #2CCA2C;
-@cor-erro: #FD3737;
-@cor-preta: #000;
-
+@import "variables"; 
 //Mixings
-.display-flex-row {
+.display-flex-row(@align: flex-start, @justify: space-between) {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: @align;
+    justify-content: @justify;
 }
-.display-flex-column {
-    .display-flex-row;
+.display-flex-column(@align: flex-start, @justify: space-between) {
+    .display-flex-row(@align, @justify);
     flex-direction: column;
 }
 
+//Elementos html
 html, body {
     height: 100%;
+    line-height: 1.5rem;
 }
-
-//Class for Page
-.ui, #root {
-    .display-flex-row;
-    height: 100%;
+h1, h2, h3 {
+    letter-spacing: 0.10rem;
+    font-weight: 500;
 }
-.ui.container {
-    width: 100%;
-}
-.ui.container > .login {
-    .display-flex-row;
-    margin-top: 5%;
-    width: 25%;
-    padding: 1.5rem 0.5rem;
-    font-size: 1.125rem; 
+i {
+    margin-right: 0.5rem;
+    min-width: 19px;
 }
 
 //navbar (Header)
 .navbar {
     .display-flex-row;    
-    width: 90px;
     height: 100%;
     z-index: 100;
     overflow-x: hidden;
     transition: 0.3s;
     background-color: @cor-preta;
-    &:hover {
-        width: 250px;        
-    }
-    &:hover .itens > .image {
-        align-content: center;
-    }
+    width: 250px;    
 }
 
 .navbar.container {
     .display-flex-column;
-    padding: 1.0rem 1.5rem;    
+    padding: 1.0rem 0rem;    
 }
 
 .navbar.container .itens {
-    .display-flex-column;        
+    .display-flex-column;
+    width: 100%;
+    a {
+        width: 100%;
+        padding: 0.25rem 1.5rem;
+        color: @cor-branca;
+        font-size: 1.2rem;
+        text-decoration: none;
+        &:hover{
+            background-color: lighten(@cor-preta, 30%)
+        }        
+    }    
 }
 
 .navbar.image {
     max-width: 40px;
 }
 
-.row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+//Class for Page
+.ui, #root {
+    .display-flex-row;
+    height: 100%;
     width: 100%;
 }
-.column {
+.ui.container {
     .display-flex-column;
-    padding: 0 1.0rem;
-    width: 100%;
-    margin-bottom: 0.8rem;
+    justify-content: flex-start;
+    width: 100%;    
 }
-.column > .separator {
-    margin-bottom: 1.0rem;
-}
-.column > label {
-    margin-bottom: 0.30rem;
+.ui.container > .login {
+    .display-flex-column;
+    margin-top: 5%;
+    width: 25%;
+    padding: 1.5rem 0.5rem;
+    font-size: 1.125rem; 
 }
 .header {
     font-size: 2.0rem;
     text-align: center;
     letter-spacing: 0.35rem;
 }
-.separator {
-    width: 100%;
-    margin: 0;
+.fa.small {
+    font-size: 1.2rem;
 }
-.two.wide {
-    width: 12.5%;
-}
-.four.wide {
-    width: 25%;
-}
-.six.wide {
-    width: 37.5%;
-}
-.eight.wide {
-    width: 50%;
-}
-.ten.wide {
-    width: 62.5%;
-}
-.twelve.wide {
-    width: 75%;
-}
-.fourteen.wide {
-    width: 87.5%;
-}
-.sixteen.wide {
+.title {
     width: 100%;
 }
-input {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 3px;   
-}
-    input:focus {
-        outline-color: @cor-primaria; /* primaria */
-    }
 
-.primary {
-    color:@cor-primaria;
-}
-.secundary {
-    color: @cor-secundaria;
-}
-.terciary {
-    color:@cor-atencao;
-}
-.success {
-    color:@cor-sucesso;
-}
-.fail {
-    color:@cor-erro;
-}
+@import "grid";
+@import "button.less";
+@import "card";
 
-.btn {
-    padding: 8px 12px;
-    border-radius: 3px;
-    font-weight: 500;
-    border: 2px solid;
-    cursor: pointer;
-}
-.btn.primary {
-    color: white;
-    background-color: @cor-primaria; /* primaria */
-    border-color: @cor-primaria;
-    transition: 0.2s;
-}
-    .btn.primary:hover {
-        color: @cor-primaria;
-        background-color: white;
-        border-color: @cor-primaria;     
-    }
-.btn.secundary {
-    color: white;
-    background-color: @cor-secundaria; /* secundaria */
-    border-color: @cor-secundaria;
-    transition: 0.2s;
-}
-    .btn.secundary:hover {
-        color: @cor-secundaria;
-        background-color: white;
-        border-color: @cor-secundaria;     
-    }
-.btn.terciary {
-    color: white;
-    background-color: @cor-atencao; /* terciaria */
-    border-color: @cor-atencao;
-    transition: 0.2s;
-}
-    .btn.terciary:hover {
-        color: @cor-atencao;
-        background-color: white;
-        border-color: @cor-atencao;     
-    }
-.btn.success {
-    color: white;
-    background-color: @cor-sucesso; /* sucesso */
-    border-color: @cor-sucesso;
-    transition: 0.2s;
-}
-    .btn.success:hover {
-        color: @cor-sucesso;
-        background-color: white;
-        border-color: @cor-sucesso;     
-    }
-
-.btn.fail {
-    color: white;
-    background-color: @cor-erro; /* erro */
-    border-color: @cor-erro;
-    transition: 0.2s;
-}
-    .btn.fail:hover {
-        color: @cor-erro;
-        background-color: white;
-        border-color: @cor-erro;     
-    }
