@@ -4,7 +4,7 @@
     border: @borda-estilo-primaria;
     border-top: none;
     border-radius: @borda-arredondada-padrao;
-    box-shadow: 0 @padding-padrao 0 rgba(@cor-preta, 0.3);
+    box-shadow: @box-shadow-padrao;
 }
 .card-header {
     font-size: 1.2rem;
@@ -16,12 +16,14 @@
 }
 .card-body {    
     width: 100%;
+    font-weight: 300;
     padding: @padding-padrao;
     border-top: @borda-estilo-primaria;
 }
 .card-footer {
     width: 100%;
     padding: @padding-padrao;
+    font-weight: 300;
     border-top: @borda-estilo-primaria;
     button {
         float: right;

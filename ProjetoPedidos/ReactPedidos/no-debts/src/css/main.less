@@ -11,6 +11,13 @@
 }
 
 //Elementos html
+* {
+    font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 html, body {
     height: 100%;
     line-height: 1.5rem;
@@ -24,72 +31,25 @@ i {
     min-width: 19px;
 }
 
-//navbar (Header)
-.navbar {
-    .display-flex-row;    
-    height: 100%;
-    z-index: 100;
-    overflow-x: hidden;
-    transition: 0.3s;
-    background-color: @cor-preta;
-    width: 250px;    
-}
-
-.navbar.container {
-    .display-flex-column;
-    padding: 1.0rem 0rem;    
-}
-
-.navbar.container .itens {
-    .display-flex-column;
-    width: 100%;
-    a {
-        width: 100%;
-        padding: 0.25rem 1.5rem;
-        color: @cor-branca;
-        font-size: 1.2rem;
-        text-decoration: none;
-        &:hover{
-            background-color: lighten(@cor-preta, 30%)
-        }        
-    }    
-}
-
-.navbar.image {
-    max-width: 40px;
-}
-
 //Class for Page
-.ui, #root {
-    .display-flex-row;
-    height: 100%;
-    width: 100%;
-}
-.ui.container {
-    .display-flex-column;
-    justify-content: flex-start;
-    width: 100%;    
-}
-.ui.container > .login {
-    .display-flex-column;
-    margin-top: 5%;
-    width: 25%;
-    padding: 1.5rem 0.5rem;
-    font-size: 1.125rem; 
-}
-.header {
-    font-size: 2.0rem;
-    text-align: center;
-    letter-spacing: 0.35rem;
-}
-.fa.small {
-    font-size: 1.2rem;
-}
-.title {
-    width: 100%;
+.ui {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 60px 1fr 60px;
+    grid-template-columns: 250px 1fr;
+    grid-template-areas: 
+        "menu content"
+        "menu content"
+        "menu footer"
+} 
+header.header {
+    grid-area: header;
+    background-color: rgba(@cor-secundaria, 0.1);
+    height: 52px;
 }
 
+@import "side-menu";
 @import "grid";
 @import "button.less";
 @import "card";
-
+@import "accordion";

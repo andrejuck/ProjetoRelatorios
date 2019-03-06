@@ -5,8 +5,22 @@ class App extends Component {
     render() {
         return (
             <div className="ui">
-                <div className="navbar">
+                {/* <header className="header">
+
+                </header> */}
+                <aside className="navbar">
                     <div className="navbar container">
+                        <div className="menu-header">
+                            <h1 className="header">
+                                <Link to="/home">
+                                    No Debts!
+                                </Link>
+                            </h1>
+                            <i className="fa fa-bars white"></i>
+                        </div>
+                        <div className="separator">
+                            <hr></hr>
+                        </div>
                         <div className="itens">
                             <Link to="/home">
                                 <i className="fa small fa-home"></i>
@@ -27,9 +41,9 @@ class App extends Component {
                         </div>
 
                     </div>
-                </div>
-                <div className="ui">
-                    { this.props.children }                    
+                </aside>
+                <div className="content">
+                    {this.props.children}
                 </div>
 
             </div>
